@@ -9,10 +9,10 @@ public interface ProductDao {
 	
 	
 	boolean addProduct(Product p );
-	boolean deleteProduct(int prodid);
+	boolean deleteProduct(String prodid);
 	boolean updateProduct(Product p);
 	List<Product>getAllProduct();
-	Product productByid(int prodId);
+	Product productByid(String prodid);
 	
 
 }

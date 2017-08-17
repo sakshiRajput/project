@@ -21,11 +21,12 @@ public class ProductDaoImpl implements ProductDao {
 public boolean addProduct(Product p) {
 		
 		Session s=sessionFactory.getCurrentSession();
+		p.setProdId(p.getProdName());
 		s.persist(p);
 		return true;
 	}
 
-public boolean deleteProduct(int prodid)
+public boolean deleteProduct(String prodid)
 {    Session s=sessionFactory.getCurrentSession();
 	Product p =(Product)s.load(Product.class, prodid);
 	s.delete(p);
@@ -43,10 +44,11 @@ public List<Product>getAllProduct()
       List<Product> list=q.getResultList();
 	  return list;
 }
-public Product productByid(int prodid)
+public Product productByid(String prodid)
 {
 	Session s=sessionFactory.getCurrentSession();
-	Query<Product> q = s.createQuery("from Product where prodId="+prodid);
+	Query<Product> q = s.createQuery("from Product where prodId=?");
+	q.setParameter(0,prodid);
     Product prodlist = (Product)q.getSingleResult();
     return prodlist;
     }

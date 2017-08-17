@@ -1,8 +1,8 @@
+com\swtshop\ShopBackend\daoimpl\CategoryDaoImpl.class
+com\swtshop\ShopBackend\config\HibernateConfig.class
+com\swtshop\ShopBackend\daoimpl\ProductDaoImpl.class
 com\swtshop\ShopBackend\model\Product.class
 com\swtshop\ShopBackend\dao\CategoryDao.class
 com\swtshop\ShopBackend\model\Category.class
 com\swtshop\ShopBackend\dao\ProductDao.class
 com\swtshop\ShopBackend\App.class
-com\swtshop\ShopBackend\daoimpl\CategoryDaoImpl.class
-com\swtshop\ShopBackend\config\HibernateConfig.class
-com\swtshop\ShopBackend\daoimpl\ProductDaoImpl.class

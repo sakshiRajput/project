@@ -6,11 +6,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swtshop.ShopBackend.dao.SupplierDao;
-import com.swtshop.ShopBackend.model.Product;
-import com.swtshop.ShopBackend.model.Supplier;
 
+import com.swtshop.ShopBackend.model.Supplier;
+@Repository("supplierDao")
+@Transactional
 public class SupplierDaoImpl implements SupplierDao {
 
 	@Autowired
@@ -21,7 +24,7 @@ public class SupplierDaoImpl implements SupplierDao {
 	{	Session ss=sessionFactory.getCurrentSession();
 	    ss.persist(s);
 	    return true;
-}
+    }
 		
 		
 

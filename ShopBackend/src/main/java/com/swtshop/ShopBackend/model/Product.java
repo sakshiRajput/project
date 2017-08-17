@@ -22,8 +22,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class Product implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int prodId;
+    private String prodId;
+	public String getProdId() {
+		return prodId;
+	}
+	public void setProdId(String prodId) {
+		this.prodId = prodId;
+	}
 	String catId;
 	public String getCatId() {
 		return catId;
@@ -34,12 +39,7 @@ public class Product implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="catId",insertable=false,nullable=false,updatable=false)
 	Category category;
-	public int getProdId() {
-		return prodId;
-	}
-	public void setProdId(int prodId) {
-		this.prodId = prodId;
-	}
+	
 	@Column(name="Product_Name")
 	private String prodName;
 	private String price;
