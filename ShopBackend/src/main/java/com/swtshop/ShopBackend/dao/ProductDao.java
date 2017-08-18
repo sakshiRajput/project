@@ -13,6 +13,7 @@ public interface ProductDao {
 	boolean updateProduct(Product p);
 	List<Product>getAllProduct();
 	Product productByid(String prodid);
+	List<Product>productByCategory(String catid);
 	
 
 }

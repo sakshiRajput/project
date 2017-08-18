@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -22,33 +24,36 @@ public class Orders implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int orderId;
-	private String payment;
-	private int total;
-	private String email;
+	private String orderStatus;
+
+	@OneToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
+	
+	
 	public int getOrderId() {
 		return orderId;
 	}
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	public String getPayment() {
-		return payment;
+	public String getOrderStatus() {
+		return orderStatus;
 	}
-	public void setPayment(String payment) {
-		this.payment = payment;
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
-	public int getTotal() {
-		return total;
+	public User getUser() {
+		return user;
 	}
-	public void setTotal(int total) {
-		this.total = total;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public String getEmail() {
-		return email;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	
 
 }

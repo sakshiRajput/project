@@ -1,20 +1,24 @@
 package com.swtshop.ShopBackend.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
+
 
 @Entity
 @Component
-@Table(name="CartDetails")
+@Table(name="Cart")
 public class Cart implements Serializable{
 	/**
 	 * 
@@ -29,48 +33,71 @@ public class Cart implements Serializable{
 	public void setCartId(int cartId) {
 		this.cartId = cartId;
 	}
-	public int getCartPrice() {
-		return cartPrice;
+	public String getUsername() {
+		return username;
 	}
-	public void setCartPrice(int cartPrice) {
-		this.cartPrice = cartPrice;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getCartProdId() {
-		return cartProdId;
+	public Long getPrice() {
+		return Price;
 	}
-	public void setCartProdId(String cartProdId) {
-		this.cartProdId = cartProdId;
+	public void setPrice(Long price) {
+		Price = price;
 	}
-	public String getCartProdName() {
-		return cartProdName;
+	public String getProdName() {
+		return ProdName;
 	}
-	public void setCartProdName(String cartProdName) {
-		this.cartProdName = cartProdName;
+	public void setProdName(String prodName) {
+		ProdName = prodName;
 	}
-	public int getCartQuantity() {
-		return cartQuantity;
+	public int getQuantity() {
+		return Quantity;
 	}
-	public void setCartQuantity(int cartQuantity) {
-		this.cartQuantity = cartQuantity;
+	public void setQuantity(int quantity) {
+		Quantity = quantity;
 	}
-	public String getUsermailId() {
-		return usermailId;
+	public String getStatus() {
+		return status;
 	}
-	public void setUsermailId(String usermailId) {
-		this.usermailId = usermailId;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	public MultipartFile getCartImage() {
-		return cartImage;
+	public Date getDateAdded() {
+		return dateAdded;
 	}
-	public void setCartImage(MultipartFile cartImage) {
-		this.cartImage = cartImage;
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
 	}
-	private int cartPrice;
-	private String cartProdId;
-	private String cartProdName;
-	private int cartQuantity;
-	private String usermailId;
-	@Transient
-	MultipartFile cartImage;
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	private String username;
+	private Long Price;
+	//private String cartProdId;
+	@Column(name = "product_name")
+	private String ProdName;
+	private int Quantity;
+	private String status;
+	@Column(name = "date_added")
+	private Date dateAdded;
+    private int user_id;
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable = false, updatable = false, insertable = false)
+	private User user;
+    
+
 	
 }

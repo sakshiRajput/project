@@ -53,7 +53,18 @@ public Product productByid(String prodid)
     return prodlist;
     }
 	
+public List<Product>productByCategory(String catid)
+{   
+	Session s=sessionFactory.getCurrentSession();
+	Query<Product> ql = s.createQuery("from Product where catId="+catid);
 	
+	List<Product> plist =ql.getResultList();
+    return plist;
+	
+	
+	
+
+}
 	
 
 }
