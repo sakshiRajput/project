@@ -85,9 +85,10 @@ public class ProductController {
 	@RequestMapping(value="/ProductDetails/{prodId}")
 	public String productmore(@PathVariable("prodId")String prodId, Model model)
 	{
-		model.addAttribute("product",productdao.productByid(prodId));
-		model.addAttribute("ProductList",productdao.getAllProduct());
-		return "redirect:/ProductDetails";	
+		//model.addAttribute("product",productdao.productByid(prodId));
+		model.addAttribute("Product",productdao.productByid(prodId));
+	//	model.addAttribute("ProductList", productdao.productByid(prodId));
+		return "ProductDetails";	
 	}
 	
 }

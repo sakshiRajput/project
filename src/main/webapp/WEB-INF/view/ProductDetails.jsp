@@ -180,20 +180,21 @@ img {
     </head>
 
     <body>
-    <c:if test="${not empty ProductList}">
-     <c:forEach items="${productList}" var="prod">
+<%--     <c:if test="${not empty ProductList}"> --%>
+<%--      <c:forEach items="${ProductList}" var="prod">  --%>
+
     <div class="container">
         <div class="card">
             <div class="container-fliud">
                 <div class="wrapper row">
                     <div class="preview col-md-6">
                         <div class="preview-pic tab-content">
-                          <div class="tab-pane active" id="pic-1"><img  src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg"  height="400px" width="80px"/></div>
+                          <div class="tab-pane active" id="pic-1"><img  src="${pageContext.request.contextPath}/resources/images/${Product.prodId}.jpg"  height="400px" width="80px"/></div>
 
                         </div>
                    </div>
                     <div class="details col-md-6">
-                        <h3 class="product-title">  ${product.prodName}</h3>
+                        <h3 class="product-title">  ${Product.prodName}</h3>
                         <div class="rating">
                             <div class="stars">
                                 <span class="fa fa-star checked"></span>
@@ -204,10 +205,10 @@ img {
                             </div>
                             <span class="review-no">41 reviews</span>
                         </div>
-                        <p class="product-description">  ${product.prodDesc}</p>
-                        <h4 class="price">  current price: <span>${product.price}</span></h4>
+                        <p class="product-description">  ${Product.prodDesc}</p>
+                        <h4 class="price">  current price: <span>${Product.price}</span></h4>
                             <div class="action">
-                             <a href="<c:url value='addtocart/${prod.prodId}'/>" class="add-to-cart btn btn-default" role="button">add to cart</a>
+                             <a href="<c:url value='addtocart/${Product.prodId}'/>" class="add-to-cart btn btn-default" role="button">add to cart</a>
                         
                             <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                             </div>
@@ -217,7 +218,7 @@ img {
             </div>
         </div>
     </div>
-    </c:forEach>
-    </c:if>
-    </body>
+<%--     </c:forEach>  --%>
+<%--     </c:if>  --%>
+     </body> 
 </html>

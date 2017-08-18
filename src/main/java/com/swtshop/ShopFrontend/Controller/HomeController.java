@@ -100,19 +100,19 @@ public class HomeController {
 		
 	}
 	
-	@RequestMapping("/ProductDetails/{prodId}")
-	public String Productdetails(String prodId,Model model)
+/*	@RequestMapping("/ProductDetails")
+	public String Productdetails(Model model)
 	{
-		model.addAttribute("ProductList",productDao.productByid(prodId));
+		model.addAttribute("ProductList",productDao.getAllProduct());
 		model.addAttribute("product",new Product());
-		return "redirect:/ProductDetails";
+		return "ProductDetails";
 	}
-	
+	*/
 	@RequestMapping("/Producttable")
 	public String Producttable(String catId,Model model)
 	{
 		model.addAttribute("ProductList",productDao.productByCategory(catId));
-		
+		model.addAttribute("product",new Product());
 		return "redirect:/Producttable";
 	}
 	

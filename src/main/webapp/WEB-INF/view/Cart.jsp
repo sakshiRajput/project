@@ -10,6 +10,8 @@
 <title>CartList</title>
 </head>
 <body>
+
+<h1>My Cart</h1>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
