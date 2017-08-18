@@ -4,61 +4,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import com.swtshop.ShopBackend.dao.CartDao;
+import com.swtshop.ShopBackend.dao.ProductDao;
 import com.swtshop.ShopBackend.model.Cart;
+import com.swtshop.ShopBackend.model.Product;
 
 
 
 @Controller
 public class CartController {
+/*
+	@Autowired
+	CartDao cartdao;
+	@Autowired
+	ProductDao productDao;
 
-/*	@Autowired
-	CartDao cartdao;*/
-	/*@RequestMapping(value="/addtocart",method=RequestMethod.POST)
-	public ModelAndView addtocart(HttpServletRequest req)
-	{   Principal pr=req.getUserPrincipal();
-		String userEmail=pr.getName();
-		/*int  pId=Integer.parseInt(req.getParameter("id"));
-		int pPrice=Integer.parseInt(req.getParameter("price"));
-		int pquantity=Integer.parseInt(req.getParameter("quantity"));
-		String prodname=req.getParameter("pname");
-		String pimage=req.getParameter("prodimage");
-		Cart cartobj=cartdao.cartByid(pId, userEmail);*/
-/*		
-		Cart cm=new Cart();
-		cm.setCartPrice(price);
-		cm.setCartProdId(pId);
-		cm.setCartImage(image);
-		
-		
-		return null;
-		
+	@RequestMapping("/ProductDetails/{catId}")
+	public String Productdetails(@PathVariable("catId")Model model)
+	{   Product product=ProductDao.
+		model.addAttribute("ProductList",productDao.productByid(catId));
+		model.addAttribute("product",new Product());
+		return "redirect:/ProductDetails";
 	}
 	
-	
-	
-	*/
-	/*	
-	@RequestMapping(value="/addtocart",method=RequestMethod.POST)
-	public String addtocart(@ModelAttribute("cart") Cart cart, Model model)
+	@RequestMapping("/Producttable")
+	public String Producttable(String catId,Model model)
 	{
+		model.addAttribute("ProductList",productDao.productByCategory(catId));
 		
-		
-		if(cart.getCartId()==0)
-		{
-			cartdao.addCart(cart);
-		}
-		else
-		{
-			cartdao.updateCart(cart);
-		}
-		
-		return  "redirect:/Cart";
-		
-	}*/
+		return "redirect:/Producttable";
+	}
+	*/
 	
 }

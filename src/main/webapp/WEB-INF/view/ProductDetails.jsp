@@ -180,6 +180,7 @@ img {
     </head>
 
     <body>
+    <c:if test="${not empty ProductList}">
      <c:forEach items="${productList}" var="prod">
     <div class="container">
         <div class="card">
@@ -187,7 +188,7 @@ img {
                 <div class="wrapper row">
                     <div class="preview col-md-6">
                         <div class="preview-pic tab-content">
-                          <div class="tab-pane active" id="pic-1"><img src="C:\Users\Public\Pictures\Sample Pictures\Koala.jpg" height="400px" width="80px"/></div>
+                          <div class="tab-pane active" id="pic-1"><img  src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg"  height="400px" width="80px"/></div>
 
                         </div>
                    </div>
@@ -205,22 +206,18 @@ img {
                         </div>
                         <p class="product-description">  ${product.prodDesc}</p>
                         <h4 class="price">  current price: <span>${product.price}</span></h4>
-<%--                         <form action="${pageContext.request.contextPath}/addtocart" method="POST" modelAttribute="cart"> --%>
-<%--                           <input type="hidden" class="form-control"  value="${product.prodId}" path="cartId" /> --%>
-<%--                            <input type="hidden" class="form-control"  value="${product.prodName}" name="pname" /> --%>
-<%--                            <input type="hidden" class="form-control"  value="${product.image}" name="image" /> --%>
-<%--                             <input type="hidden" class="form-control"  value="${product.price}" name="price" /> --%>
-<!--                            <input type="number" class="form-control" name="quantity" required/> -->
                             <div class="action">
-                            <button class="add-to-cart btn btn-default" type="submit">add to cart</button>
+                             <a href="<c:url value='addtocart/${prod.prodId}'/>" class="add-to-cart btn btn-default" role="button">add to cart</a>
+                        
                             <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                             </div>
-<!--                         </form> -->
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </c:forEach>
+    </c:if>
     </body>
 </html>

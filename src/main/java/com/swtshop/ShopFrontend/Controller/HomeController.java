@@ -100,18 +100,25 @@ public class HomeController {
 		
 	}
 	
-	@RequestMapping("/Producttable")
-	public String Producttable(Model model)
+	@RequestMapping("/ProductDetails/{prodId}")
+	public String Productdetails(String prodId,Model model)
 	{
-		model.addAttribute("ProductList",productDao.getAllProduct());
+		model.addAttribute("ProductList",productDao.productByid(prodId));
 		model.addAttribute("product",new Product());
-		return "Producttable";
+		return "redirect:/ProductDetails";
+	}
+	
+	@RequestMapping("/Producttable")
+	public String Producttable(String catId,Model model)
+	{
+		model.addAttribute("ProductList",productDao.productByCategory(catId));
+		
+		return "redirect:/Producttable";
 	}
 	
 	
 	@RequestMapping("/logg")
-	public String lon(@RequestParam("name")String x,@RequestParam("password")String y)
-	{
+	public String lon(@RequestParam("name")String x,@RequestParam("password")String y){
 		if(x.equals("sakshi") && y.equals("sak"))
 		{
 			return "logg";	
@@ -122,5 +129,9 @@ public class HomeController {
 		}
 	}
 	
-	}
+	
+
+
+
+}
 

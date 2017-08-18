@@ -72,17 +72,17 @@ public class ProductController {
 		
 	}
 	
-	@RequestMapping(value="/productByid/{prodId}")
-	public String prodbyid(@PathVariable("prodId")String prodId, Model model)
+	@RequestMapping(value="/productByCategory/{catId}")
+	public String prodbycatid(@PathVariable("catId")String catId, Model model)
 	{
 
-		model.addAttribute("product",productdao.productByid(prodId));
-		model.addAttribute("ProductList",productdao.getAllProduct());
+	
+		model.addAttribute("ProductList",productdao.productByCategory(catId));
 		return "redirect:/Producttable";
 
 	}
 
-	@RequestMapping(value="ProductDetails/${prodId}")
+	@RequestMapping(value="/ProductDetails/{prodId}")
 	public String productmore(@PathVariable("prodId")String prodId, Model model)
 	{
 		model.addAttribute("product",productdao.productByid(prodId));
