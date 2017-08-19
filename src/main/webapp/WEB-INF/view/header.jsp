@@ -6,7 +6,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="sp" %>    
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse"  >
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -18,8 +18,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="Profile">Profile</a></li>
              <li  class="dropdown">
              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
                    <ul class="dropdown-menu">
@@ -28,24 +28,26 @@
                       </c:forEach>
                   </ul>
               </li>
-               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin12 <span class="caret"></span></a>
+               <sec:authorize access="hasRole('ROLE_ADMIN')" >
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
                    <ul class="dropdown-menu">
                          <li><a href="Product"><span class="glyphicon glyphicon-log-in"></span> Product</a></li>
                          <li><a href="Category"><span class="glyphicon glyphicon-log-in"></span> Category</a></li>
                          <li><a href="Supplier"><span class="glyphicon glyphicon-log-in"></span> Supplier</a></li>
                     </ul>
-                   
+                    
                    </li>
-               
+                   </sec:authorize>
+<!--                 <li><a href="Admin">Admin</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                  <li><a href="Adddata">Admin</a></li>  
+<!--                   <li><a href="Adddata">Admin</a></li>   -->
                    <sec:authorize access="isAuthenticated()">
     <li class="nav-item" style="color:powderblue"> <br>Welcome <i>${pageContext.request.userPrincipal.name}</i></li>
        </sec:authorize>
        
         <sec:authorize access="hasRole('ROLE_USER')" >
-                    <li class="nav-item"> <a href="${pageContext.request.contextPath}/myCart/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts }</span></a></li>
+                    <li class="nav-item"> <a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
                 </sec:authorize>
                 
                  <sec:authorize access="isAuthenticated()" >
@@ -68,4 +70,8 @@
             </ul>
         </div>
     </div>
+    
+     <sec:authorize access="isAuthenticated()">
+    <li class="nav-item" > <br>Welcome <i>${pageContext.request.userPrincipal.name}</i></li>
+       </sec:authorize>
 </nav>

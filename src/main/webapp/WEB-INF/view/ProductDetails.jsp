@@ -180,10 +180,9 @@ img {
     </head>
 
     <body>
-<%--     <c:if test="${not empty ProductList}"> --%>
-<%--      <c:forEach items="${ProductList}" var="prod">  --%>
 
     <div class="container">
+    <div class="jumbotron">
         <div class="card">
             <div class="container-fliud">
                 <div class="wrapper row">
@@ -210,13 +209,14 @@ img {
                             <div class="action">
                              <a href="<c:url value='addtocart/${Product.prodId}'/>" class="add-to-cart btn btn-default" role="button">add to cart</a>
                         
-                            <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                           <a> <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button></a>
                             </div>
 
                     </div>
                 </div>
             </div>
         </div>
+   </div>
     </div>
 <%--     </c:forEach>  --%>
 <%--     </c:if>  --%>

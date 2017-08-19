@@ -8,10 +8,10 @@
     http://www.springframework.org/schema/security/spring-security.xsd">
 
 <http auto-config="true">
-	<intercept-url pattern="/Cart/**"
+	<intercept-url pattern="/all"
 			access="hasRole('ROLE_USER')" />
 			
-	<intercept-url pattern="/myCart/**"
+	<intercept-url pattern="/all"
 			access="hasRole('ROLE_USER')" />
 				<!-- 	<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/index" access="permitAll" />
@@ -24,7 +24,7 @@
 			authentication-failure-url="/Login" />
 			
 		<logout logout-url="/LogOut" delete-cookies="true"
-		 logout-success-url="/Login?LogOut" />
+		 logout-success-url="/" />
 		<csrf disabled="true" />
 	</http>
 

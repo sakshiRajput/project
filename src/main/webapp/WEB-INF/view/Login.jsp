@@ -13,7 +13,7 @@
   <style type="text/css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
    </style>
-<title>signin</title>
+<title>login</title>
 
 </head>
 <body>
@@ -51,5 +51,6 @@
             </div>
         </div>
         </form>
+        
 </body>
 </html>

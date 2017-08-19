@@ -154,12 +154,13 @@ $(function () {
 }</style>
 </head>
 
-<body>
+<body  style="background-color:#d9eef9;">
 
 <jsp:include page="header.jsp"></jsp:include>
    <br>
-    <div class="container-fluid" >
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="container-fluid" id="jumbo" >
+    
+      <div id="myCarousel" class="carousel slide container" data-ride="carousel"  >
          <!-- Indicators -->
         <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -203,8 +204,8 @@ $(function () {
     <span class="sr-only">Next</span>
   </a>
 </div>
-    </div>
-              <br>
+</div>
+     <br>
  <div class="container" id="jumbo">
   <div class="jumbotron">
     <h1>Kaleva Sweets And Namkeen</h1>
@@ -217,15 +218,23 @@ $(function () {
           So the next time you get the urge to eat, make sure it is from Kaleva.</p>
  </div>
  
-  <h3 class="title"><span>New Products</span></h3>
+<%--   <h3 class="title"><span>New Products</span></h3> --%>
+  <div class="container">
+  <div class="page-header">
+    <h1 align="center">New Products</h1>      
+  </div>
+  
+</div>
+  
+  
    <div class="container" id="jumbo">
-<div id="myCarouselOne" class="carousel slide">
+<div >
 	<!-- Dot Indicators -->
-	<div class="carousel-inner">
-	<div class="item active">
+	<div>
+	<div >
 		<div class="row">
- <c:forEach items="${ProductList}" var="prod">
-   <div class="col-sm-3">
+       <c:forEach items="${ProductList}" var="prod">
+         <div class="col-sm-3">
         	<article class="col-item">
         		<div class="photo">
         			<a href="#"> <img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" ></a>
@@ -240,7 +249,7 @@ $(function () {
         			</div>
         			<div class="separator clear-left">
         				<p class="btn-add">
-        					<a href="#" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+        					<a href="<c:url value='addtocart/${prod.prodId}'/>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
         				</p>
         				<p class="btn-details">
         					 <a href='ProductDetails/${prod.prodId}' class="btn btn-info btn-sm"><span class="glyphicon glyphicon-share"></span> More</a>
@@ -256,15 +265,15 @@ $(function () {
 	</div>
 
 	</div>
-		<a class="left carousel-control" href="#myCarouselOne" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
-		<a class="right carousel-control" href="#myCarouselOne" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+		
 </div>
   </div>
-   <footer>
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2017</p>
+  
+                 <jsp:include page="Footer.jsp"></jsp:include>
+                  <footer  style="background-color:#4c7d96;">
+                     <p align="center">Copyright &copy; Your Website 2017</p>
                
-        </div>
+     
     </footer>
    
 </body>

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.swtshop.ShopBackend.dao.CartDao;
 import com.swtshop.ShopBackend.dao.CategoryDao;
 import com.swtshop.ShopBackend.dao.ProductDao;
 import com.swtshop.ShopBackend.dao.SupplierDao;
@@ -26,6 +27,8 @@ public class HomeController {
 	SupplierDao supplierDao;
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	CartDao cartdao;
 	
 	@RequestMapping("/")
 	public String home(Model model)
@@ -35,6 +38,15 @@ public class HomeController {
 		return "index";
 		
 	}
+	
+	@RequestMapping("/index")
+	public String index()
+	{     
+		
+		return "index";
+		
+	}
+	
 	
 	@RequestMapping("/Category")
 	public String login(Model model)
@@ -112,7 +124,7 @@ public class HomeController {
 	public String Producttable(String catId,Model model)
 	{
 		model.addAttribute("ProductList",productDao.productByCategory(catId));
-		model.addAttribute("product",new Product());
+	//	model.addAttribute("product",new Product());
 		return "redirect:/Producttable";
 	}
 	
@@ -130,7 +142,25 @@ public class HomeController {
 	}
 	
 	
-
+    
+	@RequestMapping("/Profile")
+	public String profile()
+	{     
+		
+			return "Profile";
+		}
+	
+	@RequestMapping("/Admin")
+	public String admin(Model model)
+	{     
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
+		model.addAttribute("category",new Category());
+		model.addAttribute("supplierList",supplierDao.getAllSupplier());
+	    model.addAttribute("supplier",new Supplier());
+	    model.addAttribute("ProductList",productDao.getAllProduct());
+	    model.addAttribute("product",new Product());
+			return "redirect:/Admin";
+		}
 
 
 }
