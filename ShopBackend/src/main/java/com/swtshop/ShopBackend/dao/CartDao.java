@@ -7,11 +7,17 @@ import com.swtshop.ShopBackend.model.Cart;
 
 public interface CartDao {
 
-	boolean addCart(Cart c );
-	boolean deletCart(int cartId );
-	boolean updateCart(Cart c );
-	List<Cart>getAllCart(String usermailId);
-	Cart cartByid(int cartId,String usermailId);
-	
+	public boolean Save(Cart c );
+	public boolean delete(int cartId );
+	public boolean update(Cart c );
+	public int getQuantity(String username, String productname);
+	public List<Cart> getCartList(String username);
+	public long getTotalAmount(String username);
+    public Cart getCartByUsername(String username, String productname);
+    public int clearCart(String username);
+    public long getNumberOfProducts(String username);
+    public Cart getCartById(int id);
+
+
 	
 }

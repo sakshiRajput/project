@@ -42,7 +42,13 @@ public class Product implements Serializable {
 	
 	@Column(name="Product_Name")
 	private String prodName;
-	private String price;
+	private Long price;
+	public Long getPrice() {
+		return price;
+	}
+	public void setPrice(Long price) {
+		this.price = price;
+	}
 	@Column(name="Product_Description")
 	private String prodDesc;
     @Transient
@@ -60,12 +66,7 @@ public class Product implements Serializable {
 	public void setProdName(String prodName) {
 		this.prodName = prodName;
 	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
+	
 	public String getProdDesc() {
 		return prodDesc;
 	}

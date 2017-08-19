@@ -11,7 +11,7 @@ public interface UserDao {
 	//,	BillingAddress ba, ShippingAddress sa
 	public boolean addUser(User u);
 	List<User> getUser();
-	
+	 User getUserById(String id);
 	
 	
 }

@@ -1,65 +1,131 @@
 package com.swtshop.ShopBackend.daoimpl;
 
 import java.util.List;
-
+import java.io.IOException;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swtshop.ShopBackend.dao.CartDao;
 import com.swtshop.ShopBackend.model.Cart;
 
-
+@Repository("cartDao")
+@Transactional
 public class CartDaoImpl implements CartDao {
 
 	
 	@Autowired
 	SessionFactory sessionFactory;
-	public boolean addCart(Cart c )
-	{  Session s=sessionFactory.getCurrentSession();
-	   s.persist(c);
-	   return true;
+	public boolean Save(Cart cart )
+	{ 
+		 sessionFactory.getCurrentSession().save(cart);
+		 return true;
+	    
+
+	}
+	public boolean delete(int cartId )
+	{
+
+			sessionFactory.getCurrentSession().delete(getCartById(cartId));
+			return true;
+		
+
+		
 	}
 	
-		
-		
-	
-	public boolean deletCart(int cartId )
-	{
-		Session s=sessionFactory.getCurrentSession();
-		Cart c =(Cart)s.load(Cart.class, cartId);
-		s.delete(cartId);
+	public boolean update(Cart c) {
+
+
+		sessionFactory.getCurrentSession().update(c);
 		return true;
+	  
+
+	}
+	
+public List<Cart> getCartList(String username) {
+	
+	
+		Query query = sessionFactory.getCurrentSession()
+				.createQuery("from Cart where username = '" + username + "' and status='NEW'");
+		return query.list();
+	
+}
+
+	
+	public Cart getCartById(int userid) {
 		
+			return sessionFactory.getCurrentSession().get(Cart.class, userid);
 		
 	}
 	
+	public long getTotalAmount(String username) {
+	
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"SELECT SUM(price*quantity) FROM Cart where username='" + username + "' and status = 'NEW'");
+			if (query.uniqueResult() == null) {
+				return 0;
+			} else {
+				long result =  (Long) query.uniqueResult();
+				return result;
+			}
+
+		
+	}
+
+	public Cart getCartByUsername(String username, String productname) {
+		
+
+			Query query = sessionFactory.getCurrentSession().createQuery("from Cart WHERE username='" + username
+					+ "' and product_name='" + productname + "' and status = 'NEW'");
+			
+			return (Cart) query.uniqueResult();
+		
+	}
+
+	public int getQuantity(String username, String productname) {
+		
+
+			Query query = sessionFactory.getCurrentSession().createQuery("SELECT quantity from Cart WHERE username='"
+					+ username + "' and product_name='" + productname + "' and status = 'NEW'");
+		
+			return  (Integer) query.uniqueResult();
+		
+	}
+
+	public long getNumberOfProducts(String username) {
 	
 	
-	public boolean updateCart(Cart c )
-	{   Session s=sessionFactory.getCurrentSession();
-	    s.update(c);
-	    return true;
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("SELECT SUM(quantity) FROM Cart where username='" + username + "' and status = 'NEW'");
+			if (query.uniqueResult() == null) {
+				return 0;
+			} else {
+				long result =  (Long) query.uniqueResult();
+				return result;
+			}
+	
+	}
+
+	
+	public int clearCart(String username) {
+		
+	
+			Query query = sessionFactory.getCurrentSession()
+					.createQuery("DELETE from Cart where username = '" + username + "'");
+			return query.executeUpdate();
+
 		
 	}
 	
-	public List<Cart>getAllCart(String usermailId)
-	{     Session s=sessionFactory.getCurrentSession();
-	      List<Cart> clist=null;      
-	      clist=(List<Cart>)s.createQuery("from Cart where usermailId:email").setString("email",usermailId).uniqueResult();
-	      
-		  return clist;
-	}
-	
-	public Cart cartByid(int cartId,String usermailId)
-	{
-		Session s=sessionFactory.getCurrentSession();
-		Cart cr=null;
-		cr=(Cart)s.createQuery("from Cart where usermailId:email and cartProdId:id").setString("email",usermailId).setInteger("id", cartId).uniqueResult();
-		return cr;
-	    }
+
+
 	
 	
 	
+
 }

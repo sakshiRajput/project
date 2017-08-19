@@ -56,18 +56,13 @@ public class UserDaoImpl implements UserDao {
 	
 		
 	
-public User getUserById(int id)
+public User getUserById(String id)
 {
 		
 		
-		try {
+		
 			return (User) sessionFactory.getCurrentSession().get(User.class, id);
-		    }
-		catch (HibernateException e)
-		{
-			e.printStackTrace();
-			throw e;
-		}
+		   
 	}
 
 
