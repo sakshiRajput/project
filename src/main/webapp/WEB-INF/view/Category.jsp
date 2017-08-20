@@ -17,7 +17,7 @@
    </style>
 <title>Category</title>
 </head>
-<body>
+<body  >
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container">
   <h2>Add Category</h2>

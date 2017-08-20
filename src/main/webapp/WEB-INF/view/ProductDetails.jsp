@@ -179,7 +179,7 @@ img {
 /*# sourceMappingURL=style.css.map */</style>
     </head>
 
-    <body>
+    <body  style="background-image: url(resources/images/bg.jpg)">
 
     <div class="container">
     <div class="jumbotron">
@@ -202,7 +202,7 @@ img {
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                             </div>
-                            <span class="review-no">41 reviews</span>
+                            <span class="review-no">9 reviews</span>
                         </div>
                         <p class="product-description">  ${Product.prodDesc}</p>
                         <h4 class="price">  current price: <span>${Product.price}</span></h4>

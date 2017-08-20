@@ -18,8 +18,8 @@
 
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
-      width: 70%;
-      margin: auto;
+      width: 100%;
+      margin: 0;
   }</style>
    <style>/*Tooltip*/
 $(function () {
@@ -154,11 +154,11 @@ $(function () {
 }</style>
 </head>
 
-<body  style="background-color:#d9eef9;">
+<body  style="background-image: url(resources/images/bg.jpg)">
 
 <jsp:include page="header.jsp"></jsp:include>
    <br>
-    <div class="container-fluid" id="jumbo" >
+<!--     <div class="container-fluid" id="jumbo" > -->
     
       <div id="myCarousel" class="carousel slide container" data-ride="carousel"  >
          <!-- Indicators -->
@@ -174,7 +174,7 @@ $(function () {
   <div class="carousel-inner" >
 
     <div class="item active">
-       <img src="resources/images/swt1.jpg" alt="" width="460" height="345" >
+       <img src="resources/images/swt7.jpg" alt="" width="460" height="345" >
     </div>
 
     <div class="item">
@@ -204,7 +204,7 @@ $(function () {
     <span class="sr-only">Next</span>
   </a>
 </div>
-</div>
+<!-- </div> -->
      <br>
  <div class="container" id="jumbo">
   <div class="jumbotron">
@@ -213,11 +213,12 @@ $(function () {
      And in India, sweets form an integral part of celebration, be it marriage, birth of a child or festivals.
       And we, at Kaleva, have been trying to make every occasion a special one  with our sweets.</p>
   </div>
+  <div class="jumbotron">
   <p> KALEVA means sweets or snacks served at any and every occasion.       </p>
   <p> At Kaleva, We have been preparing sweets from generation to generations in the  traditional method, giving  hygiene the top priority.
           So the next time you get the urge to eat, make sure it is from Kaleva.</p>
  </div>
- 
+ </div>
 <%--   <h3 class="title"><span>New Products</span></h3> --%>
   <div class="container">
   <div class="page-header">

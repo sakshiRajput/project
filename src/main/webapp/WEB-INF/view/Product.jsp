@@ -15,7 +15,7 @@
    </style>
 <title>Product</title>
 </head>
-<body>
+<body  style="background-image: url(resources/images/bg.jpg)">
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container">
   <h2>Add Product</h2>

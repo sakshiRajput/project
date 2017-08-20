@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.swtshop.ShopBackend.dao.CategoryDao;
 import com.swtshop.ShopBackend.dao.ProductDao;
 import com.swtshop.ShopBackend.model.Product;
 
@@ -21,6 +22,11 @@ import com.swtshop.ShopBackend.model.Product;
 public class ProductController {
 	@Autowired
 	ProductDao productdao;
+	
+	
+	@Autowired
+	CategoryDao categoryDao;
+	
 	@RequestMapping(value="/addProduct",method=RequestMethod.POST)
 	public String addProduct(@ModelAttribute("product") Product p,Model model,HttpSession session)
 	{
@@ -76,9 +82,9 @@ public class ProductController {
 	public String prodbycatid(@PathVariable("catId")String catId, Model model)
 	{
 
-	
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
 		model.addAttribute("ProductList",productdao.productByCategory(catId));
-		return "redirect:/Producttable";
+		return "Producttable";
 
 	}
 

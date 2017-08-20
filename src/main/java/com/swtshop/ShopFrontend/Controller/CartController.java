@@ -21,11 +21,12 @@ import com.swtshop.ShopBackend.dao.CategoryDao;
 import com.swtshop.ShopBackend.dao.ProductDao;
 import com.swtshop.ShopBackend.dao.UserDao;
 import com.swtshop.ShopBackend.model.Cart;
+import com.swtshop.ShopBackend.model.Category;
 import com.swtshop.ShopBackend.model.Product;
 import com.swtshop.ShopBackend.model.User;
 
 
-
+@RequestMapping("/mycart")
 @Controller
 public class CartController {
 	
@@ -115,7 +116,8 @@ public class CartController {
 					return "redirect:"+str;
 				}
 			}
-
+			
+   
 		
 	}
 	
@@ -144,41 +146,68 @@ public class CartController {
 	}
 
 
+//	@RequestMapping("/clearCart")
+//	public String clearCart(RedirectAttributes redirect, Model model) {
+//		
+//			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//			String username = auth.getName();
+//			int flag = cartdao.clearCart(username);
+//
+//			if (flag >= 1) {
+//				redirect.addFlashAttribute("success", "All Items removed successfully.");
+//				return "Cart";
+//			} else {
+//				redirect.addFlashAttribute("error", "Failed to clear cart!");
+//				return "Cart";
+//			}
+//
+//		
+//	}
+	
+	
 	@RequestMapping("/clearCart")
-	public String clearCart(RedirectAttributes redirect, Model model) {
+	public String clearCart(Model model) {
 		
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String username = auth.getName();
 			int flag = cartdao.clearCart(username);
 
 			if (flag >= 1) {
-				redirect.addFlashAttribute("success", "All Items removed successfully.");
-				return "redirect:/Cart";
+			System.out.println("success,All Items removed successfully.");
+				//redirect.addFlashAttribute("success", "All Items removed successfully.");
+				return "Cart";
 			} else {
-				redirect.addFlashAttribute("error", "Failed to clear cart!");
-				return "redirect:/Cart";
+				System.out.println("error,failed to remove");
+				//redirect.addFlashAttribute("error", "Failed to clear cart!");
+				return "Cart";
 			}
 
 		
 	}
-	
 	@RequestMapping("/Cart")
-	public String cart(String username,Model model)
-	{   model.addAttribute("numberProducts", cartdao.getNumberOfProducts(username));  
+	public String cart(Model model)
+	{   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName();
+		//model.addAttribute("numberProducts", cartdao.getNumberOfProducts(username)); 
+		
 		model.addAttribute("cartInfo",cartdao.getCartList(username));
-			return "redirect:/Cart";
-		}
+		model.addAttribute("cart",new Cart());
+		return "redirect:/Cart";
+	}
 
 	@RequestMapping("/all")
-	public String getCart() {
+	public String getCart(Model model) 
+		 {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		String loggedInUsername = username;
-		session.setAttribute("numberProducts", cartdao.getNumberOfProducts(loggedInUsername));
-		session.setAttribute("cartInfo", cartdao.getCartList(loggedInUsername));
-		session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
-		return "redirect:/Cart";
+		//session.setAttribute("numberProducts", cartdao.getNumberOfProducts(loggedInUsername));
+		//session.setAttribute("cartInfo", cartdao.getCartList(loggedInUsername));
+		model.addAttribute("cartInfo",cartdao.getCartList(username));
+		//session.setAttribute("cartInfo",cartdao.getCartList(username));
+		//session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
+		return "Cart";
 	}
 
 	

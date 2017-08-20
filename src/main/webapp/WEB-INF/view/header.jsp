@@ -47,7 +47,7 @@
        </sec:authorize>
        
         <sec:authorize access="hasRole('ROLE_USER')" >
-                    <li class="nav-item"> <a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
+                    <li class="nav-item"> <a href="${pageContext.request.contextPath}/mycart/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
                 </sec:authorize>
                 
                  <sec:authorize access="isAuthenticated()" >
@@ -71,7 +71,5 @@
         </div>
     </div>
     
-     <sec:authorize access="isAuthenticated()">
-    <li class="nav-item" > <br>Welcome <i>${pageContext.request.userPrincipal.name}</i></li>
-       </sec:authorize>
+     
 </nav>

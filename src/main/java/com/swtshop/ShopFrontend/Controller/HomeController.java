@@ -150,17 +150,17 @@ public class HomeController {
 			return "Profile";
 		}
 	
-	@RequestMapping("/Admin")
-	public String admin(Model model)
-	{     
-		model.addAttribute("categoryList",categoryDao.getAllCategory());
-		model.addAttribute("category",new Category());
-		model.addAttribute("supplierList",supplierDao.getAllSupplier());
-	    model.addAttribute("supplier",new Supplier());
-	    model.addAttribute("ProductList",productDao.getAllProduct());
-	    model.addAttribute("product",new Product());
-			return "redirect:/Admin";
-		}
+//	@RequestMapping("/Admin")
+//	public String admin(Model model)
+//	{     
+//		model.addAttribute("categoryList",categoryDao.getAllCategory());
+//		model.addAttribute("category",new Category());
+//		model.addAttribute("supplierList",supplierDao.getAllSupplier());
+//	    model.addAttribute("supplier",new Supplier());
+//	    model.addAttribute("ProductList",productDao.getAllProduct());
+//	    model.addAttribute("product",new Product());
+//			return "redirect:/Admin";
+//		}
 
 
 }

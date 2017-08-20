@@ -11,7 +11,7 @@
 
 
 </head>
-<body style="background-color:#d9eef9;">
+<body style="background-image: url(resources/images/bg.jpg)">
 <jsp:include page="header.jsp"></jsp:include>
 <br>
 <div class="container">
