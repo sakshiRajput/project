@@ -63,6 +63,7 @@ public List<Cart> getCartList(String username) {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public long getTotalAmount(String username) {
 	
 			Query query = sessionFactory.getCurrentSession().createQuery(

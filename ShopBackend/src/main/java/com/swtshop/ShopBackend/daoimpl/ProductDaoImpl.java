@@ -56,7 +56,7 @@ public Product productByid(String prodid)
 public List<Product>productByCategory(String catid)
 {   
 	Session s=sessionFactory.getCurrentSession();
-	Query<Product> ql = s.createQuery("from Product where catId=?");
+	Query<Product> ql = s.createQuery("from Product where catId='" + catid + "'");
 	//ql.setEntity("catId", catid);
 	//ql.setParameter(",catid);
 	List<Product> plist =ql.getResultList();
