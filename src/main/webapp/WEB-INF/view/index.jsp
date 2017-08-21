@@ -151,7 +151,42 @@ $(function () {
 }
 .col-item .btn-details a:first-child {
   margin-right:12px;
-}</style>
+}
+
+
+
+ .carousel-control.right, .carousel-control.left {
+            background-image: none;
+            color: #190808;
+    }
+    .carousel-indicators li {
+            border-color: #190808;
+    }
+    .carousel-indicators li.active {
+            background-color: #190808;
+    }
+     h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            color: #303030;
+            font-weight: 600;
+            margin-bottom: 30px;
+    }
+    
+     h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            color: #303030;
+            font-weight: 400;
+            margin-bottom: 30px;
+    }
+    .jumbotron {
+            background-color:#d7eeef;
+            color: #190808;
+            padding: 100px 25px;
+            font-family: Montserrat, sans-serif;
+    }
+</style>
 </head>
 
 <body  style="background-image: url(resources/images/bg.jpg)">
@@ -269,6 +304,44 @@ $(function () {
 		
 </div>
   </div>
+  <div class="container" id="jumbo">
+  <div class="jumbotron">
+   <h2 align="center">What our customers say</h2>
+    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <h4>"This Shop is the best. I am so happy with the services!"<br><span>XYZ , viksapuri</span></h4>
+            </div>
+            <div class="item">
+                <h4>"One word... WOW!!"<br><span>John ,Rohini</span></h4>
+            </div>
+            <div class="item">
+                <h4>"Loved the taste and hygiene... "<br><span>Dexter , New Delhi</span></h4>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+</div>
+
+  
   
                  <jsp:include page="Footer.jsp"></jsp:include>
                   <footer  style="background-color:#4c7d96;">

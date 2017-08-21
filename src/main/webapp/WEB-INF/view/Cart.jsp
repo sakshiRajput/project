@@ -13,13 +13,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>CartList</title>
 </head>
-<body  style="background-image: url(resources/images/bg.jpg)">
+<body>
 <jsp:include page="header.jsp"></jsp:include>
  <div class="jumbotron">
  
- <div class="page-header">
+ 
     <h1 align="center">My Cart</h1>      
-  </div>
+  
  </div>
 <div class="container">
     <div class="row">
@@ -29,8 +29,8 @@
                 <thead>
                     <tr>
                         <th>Product Name</th>
-                        <th>Image</th>
-                        <th>             </th>
+                        
+                       
                         <th>Quantity</th>
 
                         <th class="text-center">Price</th>
@@ -41,20 +41,18 @@
                 <tbody>
                      <c:forEach  var="ci"  items="${cartInfo}"  >
                     <tr>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${ProdName}</strong></td>
-                        <td><img class="media-object" src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" style="width: 72px; height: 72px;"> </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>${ci.cartId}</strong></td>
                         
-                        <td>                </td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="number" class="form-control" id="Quantity" name="Quantity">
+                        <input type="text" class="form-control" id="quantity" value="${ci.quantity }">
                         </td>
 
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${Price}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>${ci.price}</strong></td>
 
                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                        <a href="<c:url value='deleteCart/${ci.cartId}'/>"><button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
+                        </button></a></td>
                     </tr>
 
                      </c:forEach>
@@ -64,20 +62,20 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong> total</strong></h3></td>
+                        <td class="text-right"><h3><strong>${totalAmount}</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td> <a href="/clearCart">  <button type="button" class="btn btn-success">
                             Clearcart
-                        </button></a>  </td>
+                         </button></a>  </td>
                         <td>   </td>
                         <td>
-                      <a href="/index">  <button type="button" class="btn btn-default">
+                      <a href="/Payment">  <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </button></a></td>
                         <td>
-                       <a href="#">  <button type="button" class="btn btn-success">
+                       <a href="invoice">  <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
                         </button></a>
                         </td>

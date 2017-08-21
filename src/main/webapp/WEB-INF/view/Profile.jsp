@@ -20,8 +20,12 @@
     <h3 align="center">COMPANY PROFILE</h3>
     <hr width="93%" color="#FFFFFF" size="1">
   </div>
-  
-  <p>Hygiene is the buzz word in our kitchens with modernized equipment keeping a constant check on quality and cleanliness. However, care is taken that there is no compromise on  taste and aroma as it was centuries ago</p><br><br>
+  <div class="row">
+  <div class="col-sm-6 col-md-6 col-lg-6">
+  <img src="resourses/images/Kaleva/_certificat1.jpg">
+  </div>
+  <div class="col-sm-6 col-md-6 col-lg-6">
+    <p>Hygiene is the buzz word in our kitchens with modernized equipment keeping a constant check on quality and cleanliness. However, care is taken that there is no compromise on  taste and aroma as it was centuries ago</p><br><br>
   <p>Kaleva,  located in heart of Delhi, stocks close to 1000 varieties of sweets, namkeens and other traditional eatables.
    Be it the Bengali Rossogolla, Rajasthani Ghevar, Karachi Halwa or the Mysore Pak, we at Kaleva give you the very best and exotic Indian taste.
     Sweets that are made in the traditional way passed on to generations for the past 500 years. Ours is a family involved in business of preserving the traditional method of sweet making.
@@ -38,8 +42,8 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
 <p> Last but not the least, we at   Kaleva offer a treasure, even for  those who do not have much of a sweet tooth. We prepare over more than 500 kinds of namkeen from the famous Dal moth, Navratan, Chana-jor and the exclusive spicy Alu wafers. The variety includes non spicy namkeens for children and non fried version for the health conscious.</p>
 
 </div>
-
-
+</div>
+</div>
 
 <jsp:include page="Footer.jsp"></jsp:include>
 

@@ -144,9 +144,9 @@ public class HomeController {
 	
     
 	@RequestMapping("/Profile")
-	public String profile()
+	public String profile(Model model)
 	{     
-		
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
 			return "Profile";
 		}
 	

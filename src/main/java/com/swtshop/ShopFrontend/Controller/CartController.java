@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.swtshop.ShopBackend.dao.CartDao;
 import com.swtshop.ShopBackend.dao.CategoryDao;
+import com.swtshop.ShopBackend.dao.OrderDao;
 import com.swtshop.ShopBackend.dao.ProductDao;
 import com.swtshop.ShopBackend.dao.UserDao;
 import com.swtshop.ShopBackend.model.Cart;
@@ -26,7 +27,7 @@ import com.swtshop.ShopBackend.model.Product;
 import com.swtshop.ShopBackend.model.User;
 
 
-@RequestMapping("/mycart")
+
 @Controller
 public class CartController {
 	
@@ -48,6 +49,8 @@ public class CartController {
 
 	@Autowired
 	 UserDao userdao;
+	@Autowired
+	OrderDao orderdao;
 
 	@Autowired
 	 HttpSession session;
@@ -88,8 +91,8 @@ public class CartController {
 
 					redirect.addFlashAttribute("success", product.getProdName() + " " + "Successfully added to cart!");
 					session.setAttribute("numberProducts", cartdao.getNumberOfProducts(username));
-					String str="/";
-					return "redirect:"+str;
+					
+					return "redirect:/";
 
 				} else {
 					redirect.addFlashAttribute("error", "Failed to add product to cart!");
@@ -102,11 +105,10 @@ public class CartController {
 				System.out.println(cart.getQuantity());
 				boolean flag = cartdao.Save(cart);
 
-				if (flag==true) {
+				if (flag) {
 
 					redirect.addFlashAttribute("success", product.getProdName() + " " + "Successfully added to cart!");
 					session.setAttribute("numberProducts", cartdao.getNumberOfProducts(username));
-					System.out.println("numberProducts:-"+cartdao.getNumberOfProducts(username));
 					String str="/";
 					return "redirect:"+str;
 
@@ -121,10 +123,10 @@ public class CartController {
 		
 	}
 	
-	@RequestMapping("/deleteItem/{prodid}")
-	public String deleteCartItem(@PathVariable("prodid") int prodid, Model model, RedirectAttributes redirect) {
+	@RequestMapping("/deleteCart/{cartId}")
+	public String deleteCartItem(@PathVariable("cartId") int cartId, Model model, RedirectAttributes redirect) {
 		
-			Cart cart = cartdao.getCartById(prodid);
+			Cart cart = cartdao.getCartById(cartId);
 
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String username = auth.getName();
@@ -138,7 +140,7 @@ public class CartController {
 				return "redirect:/Cart";
 			} else {
 				// cart.setStatus("OLD");
-				cartdao.delete(prodid);
+				cartdao.delete(cartId);
 				redirect.addFlashAttribute("success", "Item removed successfully.");
 				return "redirect:/Cart";
 			}
@@ -184,16 +186,16 @@ public class CartController {
 
 		
 	}
-	@RequestMapping("/Cart")
-	public String cart(Model model)
-	{   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String username = auth.getName();
-		//model.addAttribute("numberProducts", cartdao.getNumberOfProducts(username)); 
-		
-		model.addAttribute("cartInfo",cartdao.getCartList(username));
-		model.addAttribute("cart",new Cart());
-		return "redirect:/Cart";
-	}
+//	@RequestMapping("/Cart")
+//	public String cart(Model model)
+//	{   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//	    String username = auth.getName();
+//		//model.addAttribute("numberProducts", cartdao.getNumberOfProducts(username)); 
+//		
+//		model.addAttribute("cartInfo",cartdao.getCartList(username));
+//		model.addAttribute("cart",new Cart());
+//		return "redirect:/Cart";
+//	}
 
 	@RequestMapping("/all")
 	public String getCart(Model model) 
@@ -202,11 +204,15 @@ public class CartController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		String loggedInUsername = username;
-		//session.setAttribute("numberProducts", cartdao.getNumberOfProducts(loggedInUsername));
-		//session.setAttribute("cartInfo", cartdao.getCartList(loggedInUsername));
-		model.addAttribute("cartInfo",cartdao.getCartList(username));
-		//session.setAttribute("cartInfo",cartdao.getCartList(username));
-		//session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
+    	session.setAttribute("numberProducts", cartdao.getNumberOfProducts(loggedInUsername));
+		for(Cart n:cartdao.getCartList(loggedInUsername))
+		{ String name=n.getProdName();
+			System.out.println("name"+name);
+		}
+		session.setAttribute("cartInfo", cartdao.getCartList(loggedInUsername));
+	//	model.addAttribute("cartInfo",cartdao.getCartList(loggedInUsername));
+	//	session.setAttribute("cartInfo",cartdao.getCartList(username));
+		session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
 		return "Cart";
 	}
 
