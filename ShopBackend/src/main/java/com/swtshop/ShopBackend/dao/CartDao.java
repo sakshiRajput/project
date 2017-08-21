@@ -12,7 +12,7 @@ public interface CartDao {
 	public boolean update(Cart c );
 	public int getQuantity(String username, String productname);
 	public List<Cart> getCartList(String username);
-	public long getTotalAmount(String username);
+	public double getTotalAmount(String username);
     public Cart getCartByUsername(String username, String productname);
     public int clearCart(String username);
     public long getNumberOfProducts(String username);

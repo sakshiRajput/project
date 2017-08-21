@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.swtshop.ShopBackend.dao.CartDao;
 import com.swtshop.ShopBackend.model.Cart;
+import com.swtshop.ShopBackend.model.Category;
 
 @Repository("cartDao")
 @Transactional
@@ -52,7 +53,10 @@ public List<Cart> getCartList(String username) {
 	
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("from Cart where username = '" + username + "' and status='NEW'");
-		return query.list();
+		//return query.list();
+		
+		List<Cart> clist=query.getResultList();
+		return clist;
 	
 }
 
@@ -63,15 +67,15 @@ public List<Cart> getCartList(String username) {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
-	public long getTotalAmount(String username) {
+	public double getTotalAmount(String username) {
 	
 			Query query = sessionFactory.getCurrentSession().createQuery(
 					"SELECT SUM(price*quantity) FROM Cart where username='" + username + "' and status = 'NEW'");
 			if (query.uniqueResult() == null) {
 				return 0;
 			} else {
-				long result =  (Long) query.uniqueResult();
+				double result =  (Double) query.uniqueResult();
+				System.out.println("result-"+result);
 				return result;
 			}
 
@@ -101,12 +105,15 @@ public List<Cart> getCartList(String username) {
 	public long getNumberOfProducts(String username) {
 	
 	
-			Query query = sessionFactory.getCurrentSession()
-					.createQuery("SELECT SUM(quantity) FROM Cart where username='" + username + "' and status = 'NEW'");
-			if (query.uniqueResult() == null) {
+			Query query = sessionFactory.getCurrentSession().createQuery("SELECT SUM(quantity) FROM Cart where username=?1 and status = 'NEW'");
+			query.setParameter(1,username);
+//			return  (Integer) query.uniqueResult();
+
+			
+						if (query.uniqueResult() == null) {
 				return 0;
 			} else {
-				long result =  (Long) query.uniqueResult();
+				long result = (Long) query.uniqueResult();
 				return result;
 			}
 	

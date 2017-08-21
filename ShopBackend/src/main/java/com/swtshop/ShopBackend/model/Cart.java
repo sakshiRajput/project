@@ -38,20 +38,7 @@ public class Cart implements Serializable{
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getProdName() {
-		return ProdName;
-	}
-	public void setProdName(String prodName) {
-		ProdName = prodName;
-	}
-	public int getQuantity() {
-		return Quantity;
-	}
-	public void setQuantity(int quantity) {
-		Quantity = quantity;
-	}
+	}	
 	public String getStatus() {
 		return status;
 	}
@@ -75,19 +62,11 @@ public class Cart implements Serializable{
 		return serialVersionUID;
 	}
 	private String username;
-	private Long Price;
-	
-	
-	public Long getPrice() {
-		return Price;
-	}
-	public void setPrice(Long price) {
-		Price = price;
-	}
+	private double price;
 	//private String cartProdId;
 	@Column(name = "product_name")
 	private String ProdName;
-	private int Quantity;
+	private int quantity;
 	private String status;
 	@Column(name = "date_added")
 	private Date dateAdded;
@@ -102,6 +81,25 @@ public class Cart implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "userId", nullable = false, updatable = false, insertable = false)
 	private User user;
+	
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public String getProdName() {
+		return ProdName;
+	}
+	public void setProdName(String prodName) {
+		ProdName = prodName;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
     
 
 	
