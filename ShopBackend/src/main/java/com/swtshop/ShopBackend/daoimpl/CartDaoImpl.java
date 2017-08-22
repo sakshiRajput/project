@@ -25,6 +25,9 @@ public class CartDaoImpl implements CartDao {
 	public boolean Save(Cart cart )
 	{ 
 		 sessionFactory.getCurrentSession().save(cart);
+		//session.save(user.getBillingaddress());
+		//session.save(user.getShippingaddress());
+
 		 return true;
 	    
 

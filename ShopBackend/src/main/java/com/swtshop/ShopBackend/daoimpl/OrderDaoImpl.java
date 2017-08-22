@@ -28,16 +28,14 @@ public class OrderDaoImpl implements OrderDao {
 		
 			Session session = sessionFactory.getCurrentSession();
 
-		//	Customer customer = customerOrder.getCustomer();
-			User user=order.getUser();
-		//	customerOrder.setBillingAddress(customer.getBillingAddress());
+		
+		//	User user=order.getUser();
+		
 			
-		//	customerOrder.setShippingAddress(customer.getShippingAddress());
-			order.setOrderStatus("Placed");
-			session.saveOrUpdate(order);
-			session.saveOrUpdate(user);
-		//	session.saveOrUpdate(customer.getBillingAddress());
-			//session.saveOrUpdate(customer.getShippingAddress());
+			session.save(order);
+			//session.save(user);
+			//session.save(user.getBillingaddress());
+			//session.save(user.getShippingaddress());
 
 			return true;
 		
@@ -51,18 +49,18 @@ public class OrderDaoImpl implements OrderDao {
 		
 	}
 
-public Order getOrderById(int id) {
+public Order getOrderById(String username) {
 		
 		
-		return sessionFactory.getCurrentSession().get(Order.class, id);
+		return sessionFactory.getCurrentSession().get(Order.class, username);
 	}
 
 	
-public int changeOrderStatus(int id, String status) {
+public int changeOrderStatus(String username, String status) {
 	
 	
 		Query query = sessionFactory.getCurrentSession()
-				.createQuery("UPDATE CustomerOrder SET orderStatus = '" + status + "' where id = " + id);
+				.createQuery("UPDATE CustomerOrder SET orderStatus = '" + status + "' where id = " + username);
 		return query.executeUpdate();
 	
 

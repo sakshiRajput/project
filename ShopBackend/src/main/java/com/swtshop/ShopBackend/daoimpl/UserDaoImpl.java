@@ -20,13 +20,14 @@ import com.swtshop.ShopBackend.model.User;
 @Transactional
 public class UserDaoImpl implements UserDao {
 
+
 	@Autowired 
     SessionFactory sessionFactory;
 //,	BillingAddress ba, ShippingAddress sa
           public boolean addUser(User u) {
 		Session ss=	sessionFactory.getCurrentSession();
 		 BillingAddress ba = u.getBillingaddress();
-		    ShippingAddress sa = u.getShippingaddress();
+		 ShippingAddress sa = u.getShippingaddress();
 		u.setUserId(u.getUserName());
 	    Author auth=new Author();
 		auth.setUsername(u.getUserId());
@@ -65,7 +66,15 @@ public User getUserById(String id)
 		   
 	}
 
-
-	
+//public User getbilladdbyid(String id)
+//{
+//	
+//	Session ss=sessionFactory.getCurrentSession();
+//	 BillingAddress ba = u.getBillingaddress();
+//	    ShippingAddress sa = u.getShippingaddress()
+//	return null;
+//	
+//}
+//	
 	
 }

@@ -27,7 +27,7 @@ public class Order implements Serializable {
 	private String orderStatus;
 
 	@OneToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "userName")
 	private User user;
 
 	
@@ -54,6 +54,26 @@ public class Order implements Serializable {
 		return serialVersionUID;
 	}
 	
+	@OneToOne
+	@JoinColumn(name = "billingAddressId")
+	private  BillingAddress billingaddress;
 	
+	public BillingAddress getBillingaddress() {
+		return billingaddress;
+	}
+	public void setBillingaddress(BillingAddress billingaddress) {
+		this.billingaddress = billingaddress;
+	}
+	public ShippingAddress getShippingaddress() {
+		return shippingaddress;
+	}
+	public void setShippingaddress(ShippingAddress shippingaddress) {
+		this.shippingaddress = shippingaddress;
+	}
+
+	@OneToOne
+	@JoinColumn(name = "shippingAddressId")
+	private  ShippingAddress shippingaddress;
+
 
 }

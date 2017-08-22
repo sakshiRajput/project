@@ -7,9 +7,9 @@ public interface OrderDao {
 
 	public List<Order> getAllOrders();
 
-	public Order getOrderById(int id);
+	public Order getOrderById(String Username);
 
-	public int changeOrderStatus(int id, String status);
+	public int changeOrderStatus(String username, String status);
 
 
 	
