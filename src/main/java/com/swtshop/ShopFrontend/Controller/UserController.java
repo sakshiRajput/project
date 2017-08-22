@@ -1,5 +1,7 @@
 package com.swtshop.ShopFrontend.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,8 @@ public class UserController {
 	@Autowired
 	UserDao userDao;
 	
-	
+	@Autowired
+	 HttpSession session;
 
 
 @RequestMapping("/adduser")

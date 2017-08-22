@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+    <%@page isELIgnored="false"%>
+    <%@taglib uri="http://www.springframework.org/tags/form" prefix="sp" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -33,7 +36,7 @@
                             <div class="col-xs-12">
                                 <h2 class="page-header">
                                     <i class="fa fa-globe"></i>Kaleva Sweets.
-                                    <small class="pull-right">Date: 2017/01/09</small>
+                                    <small class="pull-right">Date:${Date}</small>
                                 </h2>
                             </div><!-- /.col -->
                         </div>
@@ -42,8 +45,12 @@
                             <div class="col-sm-4 invoice-col">
                                 From
                                 <address>
-                                    <strong>
-                                                                            </strong>
+                                    <strong> </strong>
+                                      ${shipaddr.shipapartNo}, ${shipaddr.shipstreetName }<br>
+                                      ${shipaddr.shipcity }, ${shipaddr.shipstate }<br>
+                                      ${shipaddr.shipcountry }<br>
+                                      ${shipaddr.shipzipcode }    <br>
+                                                                          </strong>  
                                 </address>
                             </div><!-- /.col -->
                             <div class="col-sm-4 invoice-col">
@@ -52,24 +59,25 @@
                                     <strong>
                                         Shahid                                    </strong>
                                     <br>
-                                    Address:
-                                    Kollanpur                                    <br>
-                                    Phone:
-                                    123456789                                   <br>
-                                    Email:ggggg@gmail.com                                </address>
+                                    ${billaddr.apartNo },${bill.streetName}    <br>
+                                    ${billaddr.city }, ${billaddr.state }                                   <br>
+                                    ${billaddr.country }<br>
+                                    ${billaddr.zipcode }       <br>
+                                                                 </address>
                             </div><!-- /.col -->
                             <div class="col-sm-4 invoice-col">
-                                <b>Invoice #007612</b><br>
+                                <b>Invoice </b><br>
                                 <br>
                                 <b>Order ID:</b> 4F3S8J<br>
                                 <b>Payment Due:</b> 2/22/2014<br>
                                 <b>Account:</b> 968-34567
-                            </div><!-- /.col -->
+                       </div><!-- /.col -->
                         </div><!-- /.row -->
 
                         <!-- Table row -->
                         <div class="row">
                             <div class="col-xs-12 table-responsive">
+                             <c:if test="${not empty cartInfo}">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -81,15 +89,17 @@
                                     </thead>
                                     <tbody>
 
-
-                                                                                <tr>
-                                            <td>2</td>
-                                            <td>18</td>
-                                            <td>12500</td>
+                                      <c:forEach  var="ci"  items="${cartInfo}"  >
+                                        <tr>
+                                            <td>${ci.quantity }</td>
+                                            <td>${ci.cartId}</td>
+                                            <td>${ci.price}</td>
                                             <td>25000</td>
                                         </tr>
+                                       </c:forEach>
                                                                             </tbody>
                                 </table>
+                                </c:if>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
 
@@ -104,7 +114,7 @@
 
                                             <tr>
                                                 <th>Total:</th>
-                                                <td> 50000</td>
+                                                <td> ${totalAmount}</td>
                                             </tr>
                                         </tbody>
                                     </table>

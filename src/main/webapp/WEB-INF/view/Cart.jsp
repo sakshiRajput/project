@@ -50,7 +50,7 @@
                         <td class="col-sm-1 col-md-1 text-center"><strong>${ci.price}</strong></td>
 
                         <td class="col-sm-1 col-md-1">
-                        <a href="<c:url value='deleteCart/${ci.cartId}'/>"><button type="button" class="btn btn-danger">
+                        <a href="<c:url value='${pageContext.request.contextPath}/deleteCart/${ci.cartId}'/>"><button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></a></td>
                     </tr>
@@ -71,11 +71,11 @@
                          </button></a>  </td>
                         <td>   </td>
                         <td>
-                      <a href="/Payment">  <button type="button" class="btn btn-default">
+                      <a href="${pageContext.request.contextPath}/">  <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </button></a></td>
                         <td>
-                       <a href="invoice">  <button type="button" class="btn btn-success">
+                       <a href="${pageContext.request.contextPath}/invoice">  <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
                         </button></a>
                         </td>
