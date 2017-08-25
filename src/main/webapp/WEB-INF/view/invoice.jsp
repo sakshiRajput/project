@@ -29,6 +29,15 @@
 </head>
 
 <body>
+  <jsp:include page="header.jsp"></jsp:include>
+<div class="container">
+  
+  <div class="alert alert-success">
+
+  <h1>          </h1>
+    <strong>PDF!</strong> You can create pdf by clicking on Print Buton and then save as pdf...and your pdf is done .
+  </div>
+</div>
   <section class="content content_content" style="width: 70%; margin: auto;">
                     <section class="invoice">
                         <!-- title row -->
@@ -94,7 +103,7 @@
                                             <td>${ci.quantity }</td>
                                             <td>${ci.cartId}</td>
                                             <td>${ci.price}</td>
-                                            <td>25000</td>
+                                            <td>${ci.quantity*ci.price}</td>
                                         </tr>
                                        </c:forEach>
                                                                             </tbody>
@@ -125,13 +134,20 @@
                         <!-- this row will not appear when printing -->
                         <div class="row no-print">
                             <div class="col-xs-12">
-                                <button class="btn btn-default"><i class="fa fa-print"></i> Print</button>
-                                <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
+                                <button  onclick="myFunction()" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+                                <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Edit Details</button>
                                 <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
                             </div>
                         </div>
                     </section>
                 </section>
+                <script>
+function myFunction() {
+    window.print();
+}
+</script>
+
+
 </body>
 
 </html>

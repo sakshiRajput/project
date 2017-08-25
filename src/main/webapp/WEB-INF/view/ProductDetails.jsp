@@ -188,7 +188,7 @@ img {
                 <div class="wrapper row">
                     <div class="preview col-md-6">
                         <div class="preview-pic tab-content">
-                          <div class="tab-pane active" id="pic-1"><img  src="${pageContext.request.contextPath}/resources/images/${Product.prodId}.jpg"  height="400px" width="80px"/></div>
+                          <div class="tab-pane active" id="pic-1"><img  src="${pageContext.request.contextPath}/resources/images/${Product.prodId}.jpg" /></div>
 
                         </div>
                    </div>
@@ -207,7 +207,7 @@ img {
                         <p class="product-description">  ${Product.prodDesc}</p>
                         <h4 class="price">  current price: <span>${Product.price}</span></h4>
                             <div class="action">
-                             <a href="<c:url value='addtocart/${Product.prodId}'/>" class="add-to-cart btn btn-default" role="button">add to cart</a>
+                             <a href="<c:url value='${pageContext.request.contextPath}/addtocart/${Product.prodId}'/>" class="add-to-cart btn btn-default" role="button">add to cart</a>
                         
                            <a> <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button></a>
                             </div>

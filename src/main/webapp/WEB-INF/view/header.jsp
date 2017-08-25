@@ -18,8 +18,8 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
-                <li><a href="Profile">Profile</a></li>
+                <li><a href="${pageContext.request.contextPath}/" class="btn btn-sm btn-warning navbar-btn">Home</a></li>
+                <li><a href="Profile" class="btn btn-sm btn-warning navbar-btn">Profile</a></li>
              <li  class="dropdown">
              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
                    <ul class="dropdown-menu">
@@ -29,7 +29,7 @@
                   </ul>
               </li>
                <sec:authorize access="hasRole('ROLE_ADMIN')" >
-               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
+               <li class="dropdown"><a  class="btn btn-sm btn-warning navbar-btn" class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
                    <ul class="dropdown-menu">
                          <li><a href="Product"><span class="glyphicon glyphicon-log-in"></span> Product</a></li>
                          <li><a href="Category"><span class="glyphicon glyphicon-log-in"></span> Category</a></li>
@@ -47,16 +47,17 @@
        </sec:authorize>
        
         <sec:authorize access="hasRole('ROLE_USER')" >
-                    <li class="nav-item"> <a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
+<%--                     <li class="nav-item"> <a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li> --%>
+               <li> <a href="${pageContext.request.contextPath}/all" class="btn btn-sm btn-warning navbar-btn"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
                 </sec:authorize>
                 
                  <sec:authorize access="isAuthenticated()" >
-                    <li class="nav-item"> <a href="${pageContext.request.contextPath}/LogOut">Logout</a></li>
+                    <li class="nav-item"> <a href="${pageContext.request.contextPath}/LogOut" class="btn btn-sm btn-warning navbar-btn">Logout</a></li>
                 </sec:authorize>
                
                 <sec:authorize access="isAnonymous()">
-                         <li><a href="${pageContext.request.contextPath}/Login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li> 
-                   		<li><a href="${pageContext.request.contextPath}/Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                         <li><a href="${pageContext.request.contextPath}/Login" class="btn btn-sm btn-warning navbar-btn"><span class="glyphicon glyphicon-log-in"></span>Login</a></li> 
+                   		<li><a href="${pageContext.request.contextPath}/Register" class="btn btn-sm btn-warning navbar-btn"><span class="glyphicon glyphicon-user"></span> Register</a></li>
          </sec:authorize>   
                   
 <%--                   <c:if test="${pageContext.request.userPrincipal.name==null}"> --%>

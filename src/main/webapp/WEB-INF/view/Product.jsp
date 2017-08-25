@@ -15,59 +15,58 @@
    </style>
 <title>Product</title>
 </head>
-<body  style="background-image: url(resources/images/bg.jpg)">
+<body >
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container">
   <h2>Add Product</h2>
  <sp:form action="${pageContext.request.contextPath}/addProduct" method="post" modelAttribute="product" enctype="Multipart/form-data">
-   
  <c:if test="${not empty product.prodName}"> 
     <sp:input type="hidden" path="prodId" readonly="true" disabled="true"/>
      <sp:hidden path="prodId"/>
   </c:if> 
     <div class="form-group">
-    
-      <sp:label  path="ProdName">Product Name:</sp:label>
-      <sp:input class="form-control"  path="ProdName" placeholder="Enter Product Name" />
+
+      <sp:label  path="prodName">Product Name:</sp:label>
+      <sp:input class="form-control"  path="prodName" placeholder="Enter Product Name" />
     </div>
     <div class="form-group">
-      <sp:label  path="ProdDesc">Product Desc:</sp:label>
-      <sp:input class="form-control"  path="ProdDesc" placeholder="Enter Product Descr" />
+      <sp:label  path="prodDesc">Product Desc:</sp:label>
+      <sp:input class="form-control"  path="prodDesc" placeholder="Enter Product Descr" />
     </div>
     <div class="form-group">
-      <sp:label path="Price">Product price:</sp:label>
-      <sp:input class="form-control"  path="Price" placeholder="Enter Product price" />
+      <sp:label path="price">Product price:</sp:label>
+      <sp:input class="form-control"  path="price" placeholder="Enter Product price" />
     </div>
     <div class="form-group">
            <sp:label path="catId">Category Id:</sp:label><br>
          <sp:select class="form-control" path="catId" >
-       
+
          <c:forEach items="${categoryList}" var="cat">
-        
+
          <option>${cat.catId}</option>
          </c:forEach>
          </sp:select>
     </div>
      <div class="form-group">
-    
+
       <sp:label  path="image">Image:</sp:label>
       <sp:input type="file" class="form-control"  path="image" placeholder="Choose Path" />
     </div>
-    
+
     <sp:button type="submit" class="btn btn-default">Submit</sp:button>
   </sp:form>
 </div>
  <div class="container">
-  <h2>Product......</h2>
-  <p>table of products...</p> 
+  <h2 align="center">Product List.....</h2>
+
 <c:if test="${not empty ProductList}">
 <table border=1 class="table table-striped" >
 <thead>
       <tr>
       <th>Name</th>
       <th>Image</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th>Action</th>
+      
       </tr>
 </thead>
 <tbody>
@@ -75,8 +74,8 @@
 <tr>
 <td>${prod.prodName}</td>
 <td><img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" height="50px" width="50px"></td>
-<td><a href="<c:url value='updateProduct/${prod.prodId}'/>">Edit</a></td>
-<td><a href="<c:url value='deleteProduct/${prod.prodId}'/>">Delete</a></td>
+<td><a class="btn btn-info btn-sm" href="<c:url value='updateProduct/${prod.prodId}'/>"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+<a class="btn btn-info btn-sm" href="<c:url value='deleteProduct/${prod.prodId}'/>"> <span class="glyphicon glyphicon-trash"></span>Delete</a></td>
 <tr>
 
 </c:forEach>

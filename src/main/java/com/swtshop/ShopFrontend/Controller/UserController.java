@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,12 +35,19 @@ public String addUser(@ModelAttribute("user") User u ,Model model)
 { 
 	
 	
-	 
+	if(u.getUserId()==null)
+	{
+		userDao.addUser(u);
+	}
+	else
+	{
+		userDao.updateUser(u);
+	}
 	    
 		
 	  //  BillingAddress ba = u.getBillingaddress();
 	    //ShippingAddress sa = u.getShippingaddress();
-	    userDao.addUser(u);
+	  //  userDao.addUser(u);
 	   
       
 	    
@@ -48,6 +56,17 @@ public String addUser(@ModelAttribute("user") User u ,Model model)
 }
 
 
+@RequestMapping(value="edituser/{userId}")
+public String updateuser(@PathVariable("userId") String  userId, Model model)
+{
+
+	model.addAttribute("user",userDao.getUserById(userId));
+
+	//model.addAttribute("userList",userDao.getUser());
+	return "address";
+
+	
+}
 
 
 

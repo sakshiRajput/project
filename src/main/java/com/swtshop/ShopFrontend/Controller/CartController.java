@@ -144,12 +144,12 @@ public class CartController {
 				cart.setQuantity(checkQ - 1);
 				cartdao.update(cart);
 				redirect.addFlashAttribute("success", "Cart updated successfully.");
-				return "redirect:/cart";
+				return "redirect:/all";
 			} else {
 				// cart.setStatus("OLD");
 				cartdao.delete(cartId);
 				redirect.addFlashAttribute("success", "Item removed successfully.");
-				return "redirect:/cart";
+				return "redirect:/all";
 			}
 		
 	}
@@ -220,6 +220,33 @@ public class CartController {
 	//	model.addAttribute("cartInfo",cartdao.getCartList(loggedInUsername));
 	//	session.setAttribute("cartInfo",cartdao.getCartList(username));
 		session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
+		//invoice info is added to display in modal..from here
+		
+		System.out.println("before get user by id");
+		User user=userdao.getUserById(loggedInUsername);
+		//session.setAttribute("mobile",user.getMobile());
+	   System.out.println("after get user by id");
+		Order order=new Order();
+		order.setBillingaddress(user.getBillingaddress());
+		order.setShippingaddress(user.getShippingaddress());
+		   System.out.println("after bill n ship");
+		order.setOrderStatus("Placed");
+		order.setUser(user);
+		System.out.println("after set user");
+		session.setAttribute("order", order);
+		session.setAttribute("shipaddr", user.getShippingaddress());
+		session.setAttribute("billaddr", user.getBillingaddress());
+		session.setAttribute("mobile",user.getMobile());
+		session.setAttribute("cartInfo", cartdao.getCartList(loggedInUsername));
+		session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
+		session.setAttribute("Date",new Date() );
+		System.out.println("before-");
+//		session.setAttribute("Billing",orderdao.getOrderById(loggedInUsername));
+		System.out.println("redirection is done:");
+		orderdao.addOrder(order);
+		
+		
+		//till here modal
 		return "Cart";
 	}
 
@@ -227,28 +254,12 @@ public class CartController {
 	
 	
 	
-//	@RequestMapping("/invoice")
-//	public String invoice()
-//	{
-////
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String username = auth.getName();
-//		String loggedInUsername = username;
-//		User user=new User();
-//		Order order=new Order();
-//		order.setOrderStatus("Placed");
-//		order.setUser(user);
-//		//order.
-//		session.setAttribute("orderrow", orderdao.getOrderById(loggedInUsername));
-//		session.setAttribute("cartInfo", cartdao.getCartList(loggedInUsername));
-//	    session.setAttribute("Date",new Date() );
-//		session.setAttribute("user", userdao.getUserById(loggedInUsername));
-//		
-//		session.setAttribute("Ba",user.getBillingaddress() );
-//		session.setAttribute("Sa" ,user.getShippingaddress());
-//		session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
-//		
-		
+	@RequestMapping("/address")
+	public String editaddress()
+	{    
+		 System.out.println("redirecting to address page");
+		return "redirect:/address";
+    }
 		
 
 		@RequestMapping("/invoice")

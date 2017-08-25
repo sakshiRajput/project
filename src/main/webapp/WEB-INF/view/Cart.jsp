@@ -17,40 +17,51 @@
 <jsp:include page="header.jsp"></jsp:include>
  <div class="jumbotron">
  
- 
-    <h1 align="center">My Cart</h1>      
+    
+    <h1 align="center"> <i class="glyphicon glyphicon-shopping-cart"></i>Cart</h1>      
   
  </div>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <c:if test="${ empty cartInfo}">
+         <table class="table table-hover">
+                
+                    <tr>
+                        <th align="center">Empty cart:no item is added yet...</th>
+                   
+                    <th>
+                     <a href="${pageContext.request.contextPath}/">  <button type="button" class="btn btn-success">
+                            <i class="fa fa-shopping-bag"></i> Continue Shopping</button></a></th>
+                    </tr>
+        </table>
+        </c:if>
             <c:if test="${not empty cartInfo}">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Product Name</th>
-                        
-                       
+                        <td>   </td>
                         <th>Quantity</th>
-
+ 						<td>   </td>
                         <th class="text-center">Price</th>
-
-                        <th> </th>
+                        <td>   </td>
+                        <th class="text-center"> Total</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                      <c:forEach  var="ci"  items="${cartInfo}"  >
                     <tr>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${ci.cartId}</strong></td>
-                        
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="text" class="form-control" id="quantity" value="${ci.quantity }">
-                        </td>
-
+                        <td class="col-sm-1 col-md-1 text-center"><strong>${ci.prodName}</strong></td>
+                        <td>   </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>${ci.quantity}</strong></td>
+					    <td>   </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${ci.price}</strong></td>
-
+ 						<td>   </td>
+ 						<td class="col-sm-1 col-md-1 text-center"><strong>${ci.price*ci.quantity}</strong></td>
                         <td class="col-sm-1 col-md-1">
-                        <a href="<c:url value='${pageContext.request.contextPath}/deleteCart/${ci.cartId}'/>"><button type="button" class="btn btn-danger">
+                        <a href="<c:url value='deleteCart/${ci.cartId}'/>"><button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></a></td>
                     </tr>
@@ -61,14 +72,14 @@
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h3>Total</h3></td>
+                        <td><h3>Grand Total</h3></td>
                         <td class="text-right"><h3><strong>${totalAmount}</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
-                        <td> <a href="/clearCart">  <button type="button" class="btn btn-success">
-                            Clearcart
-                         </button></a>  </td>
+                        <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-check-square-o"></i>Confirm Details
+                         </button> </td>
                         <td>   </td>
                         <td>
                       <a href="${pageContext.request.contextPath}/">  <button type="button" class="btn btn-default">
@@ -85,6 +96,61 @@
             </c:if>
         </div>
     </div>
+</div>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Shipping Details</h4>
+        </div>
+        <div class="modal-body">
+          <p></p>
+          <div class="row invoice-info">
+                            <div class="col-sm-4 invoice-col">
+                                <strong> Shipping Address </strong>
+                                <address>
+                                    <strong>${pageContext.request.userPrincipal.name} </strong><br>
+                                      ${shipaddr.shipapartNo}, ${shipaddr.shipstreetName }<br>
+                                      ${shipaddr.shipcity }, ${shipaddr.shipstate }<br>
+                                      ${shipaddr.shipcountry }<br>
+                                      ${shipaddr.shipzipcode }<br>
+                                                                          
+                                </address>
+                            </div><!-- /.col -->
+                            <div class="col-sm-4 invoice-col">
+                              <strong> Billing Address </strong>
+                                <address>
+                                    <strong>
+                                        Shahid                                    </strong>
+                                    <br>
+                                    ${billaddr.apartNo },${billaddr.streetName}    <br>
+                                    ${billaddr.city }, ${billaddr.state }                                   <br>
+                                    ${billaddr.country }<br>
+                                    ${billaddr.zipcode }       <br>
+                                                                 </address>
+                            </div><!-- /.col -->
+                            <div class="col-sm-4 invoice-col">
+                                <b>Invoice </b><br>
+                                <br>
+                                <b>Mobile :</b> ${mobile}<br>
+                                <b>Date:</b> ${Date}<br>
+                                <b>Account:</b> ***-****
+                       </div>
+                        </div>
+        </div>
+        <div class="modal-footer">
+       <a href="${pageContext.request.contextPath}/edituser/${pageContext.request.userPrincipal.name}">  <button type="button" class="btn btn-success">
+                       <i class="fa fa-pencil"></i>  Edit Details 
+                        </button></a>
+        <a href="${pageContext.request.contextPath}/invoice">  <button type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <jsp:include page="Footer.jsp"></jsp:include>
 </body>

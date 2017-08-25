@@ -209,7 +209,7 @@ $(function () {
   <div class="carousel-inner" >
 
     <div class="item active">
-       <img src="resources/images/swt7.jpg" alt="" width="460" height="345" >
+       <img src="resources/images/swt7.jpg" alt="" style="width:100%" >
     </div>
 
     <div class="item">
