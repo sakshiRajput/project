@@ -10,6 +10,7 @@ public interface UserDao {
 	
 	
 	public boolean addUser(User u);
+	public boolean updateUser(User u);
 	List<User> getUser();
 	 User getUserById(String id);
 	

@@ -65,7 +65,13 @@ public class Cart implements Serializable{
 	private double price;
 	//private String cartProdId;
 	@Column(name = "product_name")
-	private String ProdName;
+	private String prodName;
+	public String getProdName() {
+		return prodName;
+	}
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
 	private int quantity;
 	private String status;
 	@Column(name = "date_added")
@@ -88,12 +94,7 @@ public class Cart implements Serializable{
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public String getProdName() {
-		return ProdName;
-	}
-	public void setProdName(String prodName) {
-		ProdName = prodName;
-	}
+	
 	public int getQuantity() {
 		return quantity;
 	}

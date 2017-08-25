@@ -66,15 +66,12 @@ public User getUserById(String id)
 		   
 	}
 
-//public User getbilladdbyid(String id)
-//{
-//	
-//	Session ss=sessionFactory.getCurrentSession();
-//	 BillingAddress ba = u.getBillingaddress();
-//	    ShippingAddress sa = u.getShippingaddress()
-//	return null;
-//	
-//}
-//	
+public boolean updateUser(User u)
+{
+	
+	 Session s =sessionFactory.getCurrentSession();
+     s.update(u);
+	return true;
+	}
 	
 }

@@ -2,7 +2,7 @@ package com.swtshop.ShopBackend.model;
 
 import java.io.Serializable;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -69,7 +69,7 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "billingAddressId")
 	private BillingAddress billingaddress;
 	public BillingAddress getBillingaddress() {
@@ -80,7 +80,7 @@ public class User implements Serializable {
 	}
 	
 
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingaddress;
 	public ShippingAddress getShippingaddress() {
