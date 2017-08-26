@@ -41,6 +41,7 @@ public String addUser(@ModelAttribute("user") User u ,Model model)
 	}
 	else
 	{
+		System.out.println("in update add user "+u.getMobile());
 		userDao.updateUser(u);
 	}
 	    
@@ -61,8 +62,7 @@ public String updateuser(@PathVariable("userId") String  userId, Model model)
 {
 
 	model.addAttribute("user",userDao.getUserById(userId));
-
-	//model.addAttribute("userList",userDao.getUser());
+    model.addAttribute("userList",userDao.getUser());
 	return "address";
 
 	

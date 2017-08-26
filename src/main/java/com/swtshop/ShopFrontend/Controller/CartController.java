@@ -63,7 +63,7 @@ public class CartController {
 	 HttpSession session;
 
 
-	@RequestMapping(value = "/addtocart/{prodid}")
+	@RequestMapping(value = "addtocart/{prodid}")
     public String addToCart(@PathVariable("prodid") String prodid, RedirectAttributes redirect, Model model,Principal p) 
 		{	
 		    System.out.println("addtocart");

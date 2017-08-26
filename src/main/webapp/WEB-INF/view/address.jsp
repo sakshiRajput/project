@@ -134,6 +134,25 @@
                         <sp:hidden path="userId"/>
                       </c:if>
                        </div>
+                           <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <sp:label path="userName">User Name</sp:label>
+                                <sp:input type="text" path="userName" placeholder="Enter User Name" class="form-control"/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <sp:label path="email">Email Id</sp:label>
+                                <sp:input type="text" path="email" placeholder="Enter Last Name Here.." class="form-control"/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                        <sp:label path="mobile">Phone Number</sp:label>
+                        <sp:input type="text" path="mobile" placeholder="Enter Phone Number Here.." class="form-control"/>
+                    </div>
+
+                    <div class="col-sm-6 form-group">
+                        <sp:label path="password">Password</sp:label>
+                        <sp:input type="text" path="password" placeholder="Enter Password Here.." class="form-control"/>
+                    </div>
+                        </div>
                         <h2>Shipping Address</h2>
                         <div class="form-group">
                         <sp:label path="shippingaddress.shipapartNo">Apartment No.</sp:label>

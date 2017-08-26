@@ -123,6 +123,7 @@ public class HomeController {
 	@RequestMapping("/Producttable")
 	public String Producttable(String catId,Model model)
 	{
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
 		model.addAttribute("ProductList",productDao.productByCategory(catId));
 	//	model.addAttribute("product",new Product());
 		return "redirect:/Producttable";

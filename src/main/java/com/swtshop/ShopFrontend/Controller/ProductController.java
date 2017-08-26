@@ -31,38 +31,75 @@ public class ProductController {
 	public String addProduct(@ModelAttribute("product") Product p,Model model,HttpSession session)
 	{
 		
-		if(p.getProdId()==null)
-		{
-			productdao.addProduct(p);
+//		MultipartFile mp=p.getImage();
+//	    ServletContext context=session.getServletContext();
+//     	String filelocation=context.getRealPath("/resources/images");
+//    	System.out.println(filelocation);
+//	    String filename=filelocation+"\\"+p.getProdId()+".jpg";
+//	    System.out.println(filename);
+//	    
+//		
+//		if(p.getProdId()==null)
+//		{
+//			productdao.addProduct(p);
+//
+//		    
+//		     try
+//		     {   byte b[]=mp.getBytes();
+//		     	 FileOutputStream fos=new FileOutputStream(filename);
+//		     	 fos.write(b);
+//		     	 fos.close();
+//		     }
+//		     catch(Exception e){}
+//		  
+//				
+//		}
+//		else
+//		{
+//			System.out.println("update data");
+//			productdao.updateProduct(p);
+//			
+//		    
+//		}
+//	
+		
+		
+		try
+	     {     
 			MultipartFile mp=p.getImage();
 		    ServletContext context=session.getServletContext();
 	     	String filelocation=context.getRealPath("/resources/images");
 	    	System.out.println(filelocation);
 		    String filename=filelocation+"\\"+p.getProdId()+".jpg";
 		    System.out.println(filename);
-		try
-		{   byte b[]=mp.getBytes();
-		    FileOutputStream fos=new FileOutputStream(filename);
-		    fos.write(b);
-		    fos.close();
-		}
-		catch(Exception e){}
-		  
+		    byte b[]=mp.getBytes();
+			FileOutputStream fos=new FileOutputStream(filename);
+			fos.write(b);
+			fos.close();   
+			 
+			    if(p.getProdId()==null)
+				{
+					productdao.addProduct(p);
 				
-	}
-	else
-	{
-		System.out.println("update data");
-		productdao.updateProduct(p);
-	}
-	
-	return "redirect:/Product";	
+	             }
+			    else
+				{
+					System.out.println("update data");
+					productdao.updateProduct(p);
+					
+				    
+				}
+			    
+	     }	    
+			    catch(Exception e){}
+		
+			return "redirect:/Product";	
 	}
 
 	@RequestMapping(value="/updateProduct/{prodId}")
 	public String updateproduct(@PathVariable("prodId")String prodId, Model model)
 	{
-
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
 		model.addAttribute("product",productdao.productByid(prodId));
 		model.addAttribute("ProductList",productdao.getAllProduct());
 		return "Product";

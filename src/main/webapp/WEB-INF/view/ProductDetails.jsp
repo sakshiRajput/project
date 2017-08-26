@@ -207,7 +207,7 @@ img {
                         <p class="product-description">  ${Product.prodDesc}</p>
                         <h4 class="price">  current price: <span>${Product.price}</span></h4>
                             <div class="action">
-                             <a href="<c:url value='${pageContext.request.contextPath}/addtocart/${Product.prodId}'/>" class="add-to-cart btn btn-default" role="button">add to cart</a>
+                             <a href="${pageContext.request.contextPath}/addtocart/${Product.prodId}" class="add-to-cart btn btn-default" role="button">add to cart</a>
                         
                            <a> <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button></a>
                             </div>

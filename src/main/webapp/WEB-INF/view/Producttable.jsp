@@ -183,7 +183,7 @@ $(function () {
         			</div>
         			<div class="separator clear-left">
         				<p class="btn-add">
-        					<a href="<c:url value='addtocart/${prod.prodId}'/>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+        					<a href="${pageContext.request.contextPath}/addtocart/${prod.prodId}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
         				</p>
         				<p class="btn-details">
         					 <a href='ProductDetails/${prod.prodId}' class="btn btn-info btn-sm"><span class="glyphicon glyphicon-share"></span> More</a>
