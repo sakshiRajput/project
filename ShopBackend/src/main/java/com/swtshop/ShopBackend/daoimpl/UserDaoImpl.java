@@ -34,10 +34,10 @@ public class UserDaoImpl implements UserDao {
 		auth.setAuthority("ROLE_USER");
 		u.setActive(true);
 		
-			ss.persist(auth);
-			ss.persist(u);
-			ss.persist(ba);
-			ss.persist(sa);
+			ss.saveOrUpdate(auth);
+			ss.saveOrUpdate(u);
+			ss.saveOrUpdate(ba);
+			ss.saveOrUpdate(sa);
 			
 		
 		return true;
@@ -69,9 +69,9 @@ public User getUserById(String id)
 public boolean updateUser(User u)
 {
 	
-	 Session s =sessionFactory.getCurrentSession();
-     s.update(u);
-	return true;
+	 Session ss =sessionFactory.getCurrentSession();
+     ss.update(u);
+	 return true;
 	}
 	
 }

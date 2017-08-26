@@ -69,7 +69,7 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "billingAddressId")
 	private BillingAddress billingaddress;
 	public BillingAddress getBillingaddress() {
@@ -80,7 +80,7 @@ public class User implements Serializable {
 	}
 	
 
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingaddress;
 	public ShippingAddress getShippingaddress() {
