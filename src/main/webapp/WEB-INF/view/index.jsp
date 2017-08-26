@@ -1,179 +1,35 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+    pageEncoding="ISO-8859-1"%> 
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     <%@page isELIgnored="false"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="sp" %> 
+     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 <!DOCTYPE html>
 <html lang="en">
-<head >
-  <title>Kaleva</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 100%;
-      margin: 0;
-  }</style>
-   <style>/*Tooltip*/
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
-</style>
-  <style>.col-item {
-  border: 1px solid #E1E1E1;
-  background: #FFF;
-  margin-bottom:12px;
-}
-.col-item .options {
-  position:absolute;
-  top:6px;
-  right:22px;
-}
-.col-item .photo {
-  overflow: hidden;
-}
-.col-item .photo .options {
-  display:none;
-}
-.col-item .photo img {
-  margin: 0 auto;
-  width: 100%;
-}
-
-.col-item .options-cart {
-  position:absolute;
-  left:22px;
-  top:6px;
-  display:none;
-}
-.col-item .photo:hover .options,
-.col-item .photo:hover .options-cart {
-  display:block;
-  -webkit-animation: fadeIn .5s ease;
-  -moz-animation: fadeIn .5s ease;
-  -ms-animation: fadeIn .5s ease;
-  -o-animation: fadeIn .5s ease;
-  animation: fadeIn .5s ease;
-}
-.col-item .options-cart-round {
-  position:absolute;
-  left:42%;
-  top:22%;
-  display:none;
-}
-.col-item .options-cart-round button {
-  border-radius: 50%;
-  padding:14px 16px;
-
-}
-.col-item .options-cart-round button .fa {
-  font-size:22px;
-}
-.col-item .photo:hover .options-cart-round {
-  display:block;
-  -webkit-animation: fadeInDown .5s ease;
-  -moz-animation: fadeInDown .5s ease;
-  -ms-animation: fadeInDown .5s ease;
-  -o-animation: fadeInDown .5s ease;
-  animation: fadeInDown .5s ease;
-}
-.col-item .info {
-  padding: 10px;
-  margin-top: 1px;
-}
-.col-item .price-details {
-  width: 100%;
-  margin-top: 5px;
-}
-.col-item .price-details h1 {
-  font-size: 14px;
-  line-height: 20px;
-  margin: 0;
-  float:left;
-}
-.col-item .price-details .details {
-  margin-bottom: 0px;
-  font-size:12px;
-}
-.col-item .price-details span {
-  float:right;
-}
-.col-item .price-details .price-new {
-  font-size:16px;
-}
-.col-item .price-details .price-old {
-  font-size:18px;
-  text-decoration:line-through;
-}
-.col-item .separator {
-  border-top: 1px solid #E1E1E1;
-}
-
-.col-item .clear-left {
-  clear: left;
-}
-.col-item .separator a {
-  text-decoration:none;
-}
-.col-item .separator p {
-  margin-bottom: 0;
-  margin-top: 6px;
-  text-align: center;
-}
-
-.col-item .separator p i {
-  margin-right: 5px;
-}
-.col-item .btn-add {
-  width: 60%;
-  float: left;
-}
-.col-item .btn-add a {
-  display:inline-block !important;
-}
-.col-item .btn-add {
-  border-right: 1px solid #E1E1E1;
-}
-.col-item .btn-details {
-  width: 40%;
-  float: left;
-  padding-left: 10px;
-}
-.col-item .btn-details a {
-  display:inline-block !important;
-}
-.col-item .btn-details a:first-child {
-  margin-right:12px;
-}
-
-
-
- .carousel-control.right, .carousel-control.left {
-            background-image: none;
-            color: #190808;
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>kaleva</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    body {
+            font: 400 15px Lato, sans-serif;
+            line-height: 1.8;
+            color: #818181;
     }
-    .carousel-indicators li {
-            border-color: #190808;
-    }
-    .carousel-indicators li.active {
-            background-color: #190808;
-    }
-     h2 {
+    h2 {
             font-size: 24px;
             text-transform: uppercase;
             color: #303030;
             font-weight: 600;
             margin-bottom: 30px;
     }
-    
-     h4 {
+    h4 {
             font-size: 19px;
             line-height: 1.375em;
             color: #303030;
@@ -181,21 +37,226 @@ $(function () {
             margin-bottom: 30px;
     }
     .jumbotron {
-            background-color:#d7eeef;
-            color: #190808;
+            background-color: #59e4f9;
+            color: #fff;
             padding: 100px 25px;
             font-family: Montserrat, sans-serif;
     }
-</style>
+    .container-fluid {
+            padding: 60px 50px;
+    }
+    .bg-grey {
+            background-color: #f6f6f6;
+    }
+    .logo-small {
+            color: #0d6977;
+            font-size: 50px;
+    }
+    .logo {
+            color:#0d6977;
+            font-size: 200px;
+    }
+    .thumbnail {
+            padding: 0 0 15px 0;
+            border: none;
+            border-radius: 0;
+    }
+    .thumbnail img {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10px;
+    }
+    .carousel-control.right, .carousel-control.left {
+            background-image: none;
+            color: #0d6977;
+    }
+    .carousel-indicators li {
+            border-color: #0d6977;
+    }
+    .carousel-indicators li.active {
+            background-color: #0d6977;
+    }
+    .item h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            font-weight: 400;
+            font-style: italic;
+            margin: 70px 0;
+    }
+    .item span {
+            font-style: normal;
+    }
+    .panel {
+            border: 1px solid #0d6977;
+            border-radius:0 !important;
+            transition: box-shadow 0.5s;
+    }
+    .panel:hover {
+            box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+    }
+    .panel-footer .btn:hover {
+            border: 1px solid #0d6977;
+            background-color: #fff !important;
+            color: #0d6977;
+    }
+    .panel-heading {
+            color: #fff !important;
+            background-color: #0d6977 !important;
+            padding: 2px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+    }
+    .panel-footer {
+            background-color: white !important;
+    }
+    .panel-footer h3 {
+            font-size: 32px;
+    }
+    .panel-footer h4 {
+            color: #aaa;
+            font-size: 14px;
+    }
+    .panel-footer .btn {
+             border: 1px solid #0d6977;
+            margin: 15px 0;
+            background-color:#fff;
+            color: #0d6977;
+    }
+    .navbar {
+            margin-bottom: 0;
+            background-color: #59e4f9;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Montserrat, sans-serif;
+    }
+    .navbar li a, .navbar .navbar-brand {
+            color: #fff !important;
+    }
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+            color: #59e4f9 !important;
+            background-color: #fff !important;
+    }
+    .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+    }
+    footer .glyphicon {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color:#0d6977;
+    }
+/*     .slideanim {visibility:hidden;} */
+    .slide {
+            animation-name: slide;
+            -webkit-animation-name: slide;
+            animation-duration: 1s;
+            -webkit-animation-duration: 1s;
+            visibility: visible;
+    }
+    @keyframes slide {
+        0% {
+            opacity: 0;
+            transform: translateY(70%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0%);
+        }
+    }
+    @-webkit-keyframes slide {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateY(70%);
+        }
+        100% {
+            opacity: 1;
+            -webkit-transform: translateY(0%);
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .col-sm-4 {
+            text-align: center;
+            margin: 25px 0;
+        }
+        .btn-lg {
+                width: 100%;
+                margin-bottom: 35px;
+        }
+    }
+    @media screen and (max-width: 480px) {
+        .logo {
+                font-size: 150px;
+        }
+    }
+    </style>
 </head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<body  style="background-image: url(resources/images/bg.jpg)">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li><a href="#about">ABOUT</a></li>
+                <li><a href="#services">PROFILE</a></li>
+                <li><a href="#portfolio">CATEGORY</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+                <li  class="dropdown">
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                       <c:forEach items="${categoryList}" var="cat">
+                          <li><a href="${pageContext.request.contextPath}/productByCategory/${cat.catId}">${cat.catId}</a></li>
+                      </c:forEach>
+                  </ul>
+                 </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                         <li><a href="Product"><span class="glyphicon glyphicon-log-in"></span> Product</a></li>
+                         <li><a href="Category"><span class="glyphicon glyphicon-log-in"></span> Category</a></li>
+                         <li><a href="Supplier"><span class="glyphicon glyphicon-log-in"></span> Supplier</a></li>
+                   </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <sec:authorize access="hasRole('ROLE_USER')" >
+                <li><a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">4</span></a></li>
+		        </sec:authorize>
+		        <sec:authorize access="isAuthenticated()" >
+                <li><a href="${pageContext.request.contextPath}/LogOut">Logout</a></li>
+		        </sec:authorize>
+		       <sec:authorize access="isAnonymous()">
+	        	 <li><a href="${pageContext.request.contextPath}/Login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+                
+	         	<li><a href="${pageContext.request.contextPath}/Register"><span class="glyphicon glyphicon-user"></span> REGISTER</a></li>
+		      </sec:authorize>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<jsp:include page="header.jsp"></jsp:include>
-   <br>
-<!--     <div class="container-fluid" id="jumbo" > -->
-    
-      <div id="myCarousel" class="carousel slide container" data-ride="carousel"  >
+<div class="jumbotron text-center">
+    <h1>Kaleva Sweets</h1>
+    <p>We specialize in sweets</p>
+    <h3> <sec:authorize access="isAuthenticated()">Welcome :<i>${pageContext.request.userPrincipal.name}</i></sec:authorize></h3>
+
+</div>
+
+<!-- carousel -->
+       <div id="myCarousel" class="carousel slide container" data-ride="carousel"  >
          <!-- Indicators -->
         <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -213,19 +274,19 @@ $(function () {
     </div>
 
     <div class="item">
-      <img src="resources/images/swt2.jpg" alt="Magazine holder" width="460" height="345">
+      <img src="resources/images/swt2.jpg" alt="Magazine holder" style="width:100%">
     </div>
 
     <div class="item">
-      <img src="resources/images/swt3.jpg" alt="wall art" width="460" height="345">
+      <img src="resources/images/swt3.jpg" alt="wall art" style="width:100%">
     </div>
 
     <div class="item">
-     <img src="resources/images/swt4.jpg" alt="candle stand" width="460" height="345">
+     <img src="resources/images/swt4.jpg" alt="candle stand" style="width:100%">
     </div>
 
     <div class="item">
-      <img src="resources/images/swt5.jpg" alt="wall mirror" width="460" height="345">
+      <img src="resources/images/swt5.jpg" alt="wall mirror" style="width:100%">
     </div>
   </div>
 
@@ -239,74 +300,69 @@ $(function () {
     <span class="sr-only">Next</span>
   </a>
 </div>
-<!-- </div> -->
-     <br>
- <div class="container" id="jumbo">
-  <div class="jumbotron">
-    <h1>Kaleva Sweets And Namkeen</h1>
-    <p>Sweets add a special touch to every occasion.
-     And in India, sweets form an integral part of celebration, be it marriage, birth of a child or festivals.
-      And we, at Kaleva, have been trying to make every occasion a special one  with our sweets.</p>
-  </div>
-  <div class="jumbotron">
-  <p> KALEVA means sweets or snacks served at any and every occasion.       </p>
-  <p> At Kaleva, We have been preparing sweets from generation to generations in the  traditional method, giving  hygiene the top priority.
-          So the next time you get the urge to eat, make sure it is from Kaleva.</p>
- </div>
- </div>
-<%--   <h3 class="title"><span>New Products</span></h3> --%>
-  <div class="container">
-  <div class="page-header">
-    <h1 align="center">New Products</h1>      
-  </div>
-  
-</div>
-  
-  
-   <div class="container" id="jumbo">
-<div >
-	<!-- Dot Indicators -->
-	<div>
-	<div >
-		<div class="row">
-       <c:forEach items="${ProductList}" var="prod">
-         <div class="col-sm-3">
-        	<article class="col-item">
-        		<div class="photo">
-        			<a href="#"> <img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" ></a>
-        		</div>
-        		<div class="info">
-        			<div class="row">
-        				<div class="price-details col-md-6">
-        					<p class="details">${prod.prodDesc}</p>
-        					<h1>${prod.prodName}</h1>
-        					<span class="price-new"><i class="fa fa-inr"></i>${prod.price}</span>
-        				</div>
-        			</div>
-        			<div class="separator clear-left">
-        				<p class="btn-add">
-        					<a href="<c:url value='addtocart/${prod.prodId}'/>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-        				</p>
-        				<p class="btn-details">
-        					 <a href="${pageContext.request.contextPath}/ProductDetails/${prod.prodId}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-share"></span> More</a>
+<!-- Container (About Section) -->
+<div id="about" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <h2>About Kaleva</h2><br>
+            <h4>Hygiene is the buzz word in our kitchens with modernized equipment keeping a constant check on quality and cleanliness. However, care is taken that there is no compromise on  taste and aroma as it was centuries ago.</h4><br>
+             <p>Kaleva,  located in heart of Delhi, stocks close to 1000 varieties of sweets, namkeens and other traditional eatables.
+   Be it the Bengali Rossogolla, Rajasthani Ghevar, Karachi Halwa or the Mysore Pak, we at Kaleva give you the very best and exotic Indian taste.
+    Sweets that are made in the traditional way passed on to generations for the past 500 years. Ours is a family involved in business of preserving the traditional method of sweet making.
+    We are the fourth generation of Agarwals, initially from Bikaner in Rajasthan, presently running   business..
+    </p>
 
-        				</p>
-        			</div>
-        			<div class="clearfix"></div>
-        		</div>
-        	</article>
+            <br><button class="btn btn-default btn-lg">Get in Touch</button>
         </div>
- </c:forEach>
-  </div>
-	</div>
-
-	</div>
-		
+        <div class="col-sm-4">
+             <img src="resources/images/png4.png" alt="Paris" width="400" height="300">
+        </div>
+    </div>
 </div>
-  </div>
-  <div class="container" id="jumbo">
-  <div class="jumbotron">
-   <h2 align="center">What our customers say</h2>
+
+<div class="container-fluid bg-grey">
+    <div class="row">
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-globe logo slideanim"></span>
+        </div>
+        <div class="col-sm-8">
+            <h2>Our Speciality</h2><br>
+            <h4><strong>HYGIENE:</strong> Hygiene is the buzz word in our kitchens with modernized equipment keeping a constant check on quality and cleanliness. However, care is taken that there is no compromise on  taste and aroma as it was centuries ago</h4><br>
+          <p>  Kaleva specializes in sweets that   remind  you of a forgotten era with Raj Bhog, Rasmalai, Pista Burfi,   Kaju roll and more than 15 varieties of ladoo.
+    Sweets that have been savored by the royals that have ruled the country in the past.
+Kaleva's preparation involves the most ethnic way of sweet making using the traditional method while keeping your health as a priority.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Container (Services Section) -->
+<div id="services" class="container-fluid text-center">
+    <h2>SERVICES</h2>
+    <h4>What we offer</h4>
+    <br>
+    <div class="row slideanim">
+        <div class="col-sm-4">
+             <i class="glyphicon glyphicon-send logo-small"></i>
+
+            <h4>EXPORTING</h4>
+            <p></p>
+        </div>
+        <div class="col-sm-4">
+            <i class="glyphicon glyphicon-cutlery logo-small"></i>
+
+            <h4>CATERING</h4>
+            <p></p>
+        </div>
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-home logo-small"></span>
+            <span class="glyphicon glyphicon-gift logo-small"></span>
+            <h4>HOME DELIVERY</h4>
+            <p></p>
+        </div>
+    </div>
+    <br><br>
+    <div class="row slideanim">
+        <h2 align="center">What our customers say</h2>
     <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -338,17 +394,196 @@ $(function () {
             <span class="sr-only">Next</span>
         </a>
     </div>
-</div>
+    </div>
 </div>
 
-  
-  
-                 <jsp:include page="Footer.jsp"></jsp:include>
-                  <footer  style="background-color:#4c7d96;">
-                     <p align="center">Copyright &copy; Your Website 2017</p>
-               
+<!-- Container (Portfolio Section) -->
+<div id="portfolio" class="container-fluid text-center bg-grey">
+    <h2>CATEGORY</h2><br>
+    <h4>What we have</h4>
+    <div class="row text-center slideanim">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="paris.jpg" alt="Paris" width="400" height="300">
+                <p><strong>Paris</strong></p>
+                <p>Yes, we built Paris</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="newyork.jpg" alt="New York" width="400" height="300">
+                <p><strong>New York</strong></p>
+                <p>We built New York</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="sanfran.jpg" alt="San Francisco" width="400" height="300">
+                <p><strong>San Francisco</strong></p>
+                <p>Yes, San Fran is ours</p>
+            </div>
+        </div>
+    </div><br>
+
+
+
+</div>
+
+<!-- Container (Pricing Section) -->
+<div id="pricing" class="container-fluid">
+    <div class="text-center">
+        <h2>New Products</h2>
+        <h4>Have a look...</h4>
+    </div>
+  <div class="row slideanim">
+
+      <c:forEach items="${ProductList}" var="prod">
+            <div class="item">
+        <div class="col-sm-4 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>${prod.prodName}</h1>
+                </div>
+                <div class="panel-body">
+                 <img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" alt="Paris" width="300" height="200">
+                </div>
+                <div class="panel-footer">
+                    <h3><span class="price-new"><i class="fa fa-inr"></i>${prod.price}</span></h3>
+<!--                     <button class="btn btn-lg">Sign Up</button> <button class="btn btn-lg">Sign Up</button> -->
+						  <button class="btn btn-lg"><a href="<c:url value='addtocart/${prod.prodId}'/>" ><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+        				  </button>
+        				 <button class="btn btn-lg"> <a href="${pageContext.request.contextPath}/ProductDetails/${prod.prodId}"><span class="glyphicon glyphicon-share"></span> More</a>
+						</button>
+        			
+               </div>
+            </div>
+        </div>
+
+       </div>
+ </c:forEach>
+      
+      
+        
+     </div>
+</div>     
+<!--     <div class="col-sm-4 col-xs-12"> -->
+<!--       <div class="panel panel-default text-center"> -->
+<!--         <div class="panel-heading"> -->
+<!--           <h1>Premium</h1> -->
+<!--         </div> -->
+<!--         <div class="panel-body"> -->
+<!--           <p><strong>100</strong> Lorem</p> -->
+<!--           <p><strong>50</strong> Ipsum</p> -->
+<!--           <p><strong>25</strong> Dolor</p> -->
+<!--           <p><strong>10</strong> Sit</p> -->
+<!--           <p><strong>Endless</strong> Amet</p> -->
+<!--         </div> -->
+<!--         <div class="panel-footer"> -->
+<!--           <h3>$49</h3> -->
+<!--           <h4>per month</h4> -->
+<!--           <button class="btn btn-lg">Sign Up</button> -->
+<!--         </div> -->
+<!--       </div>       -->
+<!--     </div>    -->
+    
      
-    </footer>
-   
+ 
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid bg-grey">
+    <h2 class="text-center">CONTACT</h2>
+    <div class="row">
+        <div class="col-sm-5">
+            <p>Contact us and we'll get back to you within 24 hours.</p>
+            <p><span class="glyphicon glyphicon-map-marker"></span> 109-Gole market,New Delhi-110001</p>
+            <p><span class="glyphicon glyphicon-phone"></span> 91-01(345782)/3360968</p>
+            <p><span class="glyphicon glyphicon-envelope"></span> xyz@kaleva.com</p>
+        </div>
+        <div class="col-sm-7 slideanim">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                </div>
+            </div>
+            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <button class="btn btn-default pull-right" type="submit">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+
+<!-- Add Google Maps -->
+<div id="googleMap" style="height:400px;width:100%;"></div>
+<script>
+function myMap() {
+var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+var marker = new google.maps.Marker({position:myCenter});
+marker.setMap(map);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+<footer class="container-fluid text-center">
+    <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p> Made By SakshiRajput</p>
+</footer>
+
+<script>
+$(document).ready(function(){
+    // Add smooth scrolling to all links in navbar + footer link
+    $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 900, function(){
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+            });
+        } // End if
+    });
+
+    $(window).scroll(function() {
+        $(".slideanim").each(function(){
+            var pos = $(this).offset().top;
+
+            var winTop = $(window).scrollTop();
+                if (pos < winTop + 600) {
+                    $(this).addClass("slide");
+                }
+        });
+    });
+})
+</script>
+
 </body>
 </html>

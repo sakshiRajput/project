@@ -13,6 +13,8 @@
   <style type="text/css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
    </style>
+   
+   <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/Newhead.css" />
 <title>login</title>
 
 </head>
