@@ -56,7 +56,7 @@
 
                     <div class="col-sm-6 form-group">
                         <sp:label path="password">Password</sp:label>
-                        <sp:input type="text" path="password" placeholder="Enter Password Here.." class="form-control"/>
+                        <sp:input type="password" path="password" placeholder="Enter Password Here.." class="form-control"/>
                     </div>
                         </div>
 

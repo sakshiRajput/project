@@ -19,12 +19,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <br><br>
 
-<!--  <div class="jumbotron" > -->
-<!--   <h2 align="center">Products</h2> -->
-  
 
-<!--    <div class="container" id="jumbo"> -->
-<!-- <div > -->
 
                 <div class="panel-heading">
                     <h1 align="center">Products</h1>
@@ -52,7 +47,7 @@
 <!--                     <button class="btn btn-lg">Sign Up</button> <button class="btn btn-lg">Sign Up</button> -->
 						  <button class="btn btn-lg"><a href="${pageContext.request.contextPath}/addtocart/${prod.prodId}" ><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
         				  </button>
-        				 <button class="btn btn-lg"> <a href='ProductDetails/${prod.prodId}'><span class="glyphicon glyphicon-share"></span> More</a>
+        				 <button class="btn btn-lg"> <a href="${pageContext.request.contextPath}/ProductDetails/${prod.prodId}"><span class="glyphicon glyphicon-share"></span> More</a>
 						</button>
         			
                </div>

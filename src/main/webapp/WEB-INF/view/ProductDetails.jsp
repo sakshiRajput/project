@@ -3,10 +3,18 @@
      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     <%@page isELIgnored="false"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="sp" %> 
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 <!DOCTYPE html>
 <html lang="en">
     <head>
 
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Product Detail</title>
@@ -124,7 +132,7 @@ img {
     margin-left: 20px; }
 
 .add-to-cart, .like {
-  background: #ff9f1a;
+  background:#0d6977 ;
   padding: 1.2em 1.5em;
   border: none;
   text-transform: UPPERCASE;
@@ -176,19 +184,20 @@ img {
     -webkit-transform: scale(1);
             transform: scale(1); } }
 
-/*# sourceMappingURL=style.css.map */</style>
+</style>
     </head>
 
-    <body  style="background-image: url(resources/images/bg.jpg)">
+    <body>
+<jsp:include page="header.jsp"></jsp:include>
+<br><br>
 
     <div class="container">
-    <div class="jumbotron">
         <div class="card">
             <div class="container-fliud">
                 <div class="wrapper row">
                     <div class="preview col-md-6">
                         <div class="preview-pic tab-content">
-                          <div class="tab-pane active" id="pic-1"><img  src="${pageContext.request.contextPath}/resources/images/${Product.prodId}.jpg" /></div>
+                          <div class="tab-pane active" id="pic-1"><img  src="${pageContext.request.contextPath}/resources/images/${Product.prodId}.jpg" width="400" height="300"/></div>
 
                         </div>
                    </div>
@@ -217,8 +226,7 @@ img {
             </div>
         </div>
    </div>
-    </div>
-<%--     </c:forEach>  --%>
-<%--     </c:if>  --%>
+   <br><br>
+<jsp:include page="Footer.jsp"></jsp:include>
      </body> 
 </html>
