@@ -22,6 +22,7 @@
 
 
         <jsp:include page="header.jsp"></jsp:include>
+        <br><br><br><br>
         <form action="logg" method="POST"  >
         <div class="container col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4">
             <br />

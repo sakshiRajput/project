@@ -16,114 +16,20 @@
    </style>
 <title>SignUp</title>
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-        <style type="text/css">
-                @import "font-awesome.min.css";
-@import "font-awesome-ie7.min.css";
-/* Space out content a bit */
-/*    body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #eee;
-    }
-    .fullscreen_bg {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-size: cover;
-        background-position: 50% 50%;
-        background-image: url('http://31.media.tumblr.com/ad65726441493f47e0c8f0473206f4e5/tumblr_mvwl4fCEb21rdpk23o1_1280.jpg');
-    }  */
-/*body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}   */
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    padding-bottom: 19px;
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-}
-
-/* Custom page footer */
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
-
-/* Customize container */
-@media (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
-}
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-    padding: 14px 24px;
-    font-size: 21px;
-}
-
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-right: 0;
-        padding-left: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
-}
-        </style>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <jsp:include page="header.jsp"></jsp:include>
+<br><br><br><br>
      <div id="fullscreen_bg" class="fullscreen_bg"/>
          <div class="container">
-           <h1 class="well">Registration Form</h1>
-           <div class="col-lg-12 well">
+            <div class="panel-heading">
+                    <h1>Registration Form</h1>
+                </div>
+                 <div class="col-lg-12 well">
                 <div class="row">
                 <sp:form action="${pageContext.request.contextPath}/adduser" method="POST" modelAttribute="user" >
 
