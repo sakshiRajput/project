@@ -204,10 +204,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-              <li><a href="#">ABOUT</a></li>
-                <li><a href="#services">PROFILE</a></li>
-                <li><a href="#portfolio">CATEGORY</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+              <li><a href="${pageContext.request.contextPath}/"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
+              
+                <li><a href="#">CATEGORY</a></li>
                 <li  class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
                    <ul class="dropdown-menu">
@@ -216,6 +215,7 @@
                       </c:forEach>
                   </ul>
                  </li>
+                  <sec:authorize access="hasRole('ROLE_ADMIN')" >
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
                    <ul class="dropdown-menu">
                          <li><a href="Product"><span class="glyphicon glyphicon-log-in"></span> Product</a></li>
@@ -223,10 +223,11 @@
                          <li><a href="Supplier"><span class="glyphicon glyphicon-log-in"></span> Supplier</a></li>
                    </ul>
                 </li>
+                </sec:authorize>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <sec:authorize access="hasRole('ROLE_USER')" >
-                <li><a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">4</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
 		        </sec:authorize>
 		        <sec:authorize access="isAuthenticated()" >
                 <li><a href="${pageContext.request.contextPath}/LogOut">Logout</a></li>

@@ -120,6 +120,7 @@
 <body>
 
 <jsp:include page="header.jsp"></jsp:include>
+<br><br><br>
      <div id="fullscreen_bg" class="fullscreen_bg"/>
          <div class="container">
            <h1 class="well">Registration Form</h1>

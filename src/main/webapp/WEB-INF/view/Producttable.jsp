@@ -26,8 +26,8 @@
 <!--    <div class="container" id="jumbo"> -->
 <!-- <div > -->
 
-<div class="panel-heading">
-                    <h1>Products</h1>
+                <div class="panel-heading">
+                    <h1 align="center">Products</h1>
                 </div>
 	<!-- Dot Indicators -->
 	

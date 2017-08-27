@@ -193,6 +193,7 @@
     @media screen and (max-width: 480px) {
         .logo {
                 font-size: 150px;
+                font-family:cursive;
         }
     }
     </style>
@@ -207,12 +208,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#myPage">Logo</a>
+            <a class="navbar-brand" href="#myPage"><span class="glyphicon glyphicon-cutlery"></span>Kaleva<span class="glyphicon glyphicon-grain"></span></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
               <li><a href="#about">ABOUT</a></li>
-                <li><a href="#services">PROFILE</a></li>
+                <li><a href="#services">SERVICES</a></li>
                 <li><a href="#portfolio">CATEGORY</a></li>
                 <li><a href="#contact">CONTACT</a></li>
                 <li  class="dropdown">
@@ -223,6 +224,7 @@
                       </c:forEach>
                   </ul>
                  </li>
+                  <sec:authorize access="hasRole('ROLE_ADMIN')" >
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
                    <ul class="dropdown-menu">
                          <li><a href="Product"><span class="glyphicon glyphicon-log-in"></span> Product</a></li>
@@ -230,10 +232,11 @@
                          <li><a href="Supplier"><span class="glyphicon glyphicon-log-in"></span> Supplier</a></li>
                    </ul>
                 </li>
+                </sec:authorize>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <sec:authorize access="hasRole('ROLE_USER')" >
-                <li><a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">4</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
 		        </sec:authorize>
 		        <sec:authorize access="isAuthenticated()" >
                 <li><a href="${pageContext.request.contextPath}/LogOut">Logout</a></li>
@@ -402,27 +405,17 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
     <h2>CATEGORY</h2><br>
     <h4>What we have</h4>
     <div class="row text-center slideanim">
+      <c:forEach items="${categoryList}" var="cat">
         <div class="col-sm-4">
             <div class="thumbnail">
-                <img src="paris.jpg" alt="Paris" width="400" height="300">
-                <p><strong>Paris</strong></p>
-                <p>Yes, we built Paris</p>
+<!--                 <img src="paris.jpg" alt="Paris" width="400" height="300"> -->
+                     <br>
+                     <p><strong><a href="${pageContext.request.contextPath}/productByCategory/${cat.catId}">${cat.catId}</a></strong></p>
+<!--                 <p>Yes, we built Paris</p> -->
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="thumbnail">
-                <img src="newyork.jpg" alt="New York" width="400" height="300">
-                <p><strong>New York</strong></p>
-                <p>We built New York</p>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="thumbnail">
-                <img src="sanfran.jpg" alt="San Francisco" width="400" height="300">
-                <p><strong>San Francisco</strong></p>
-                <p>Yes, San Fran is ours</p>
-            </div>
-        </div>
+     </c:forEach>
+      
     </div><br>
 
 
@@ -466,26 +459,7 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
         
      </div>
 </div>     
-<!--     <div class="col-sm-4 col-xs-12"> -->
-<!--       <div class="panel panel-default text-center"> -->
-<!--         <div class="panel-heading"> -->
-<!--           <h1>Premium</h1> -->
-<!--         </div> -->
-<!--         <div class="panel-body"> -->
-<!--           <p><strong>100</strong> Lorem</p> -->
-<!--           <p><strong>50</strong> Ipsum</p> -->
-<!--           <p><strong>25</strong> Dolor</p> -->
-<!--           <p><strong>10</strong> Sit</p> -->
-<!--           <p><strong>Endless</strong> Amet</p> -->
-<!--         </div> -->
-<!--         <div class="panel-footer"> -->
-<!--           <h3>$49</h3> -->
-<!--           <h4>per month</h4> -->
-<!--           <button class="btn btn-lg">Sign Up</button> -->
-<!--         </div> -->
-<!--       </div>       -->
-<!--     </div>    -->
-    
+
      
  
 
@@ -494,26 +468,26 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
     <h2 class="text-center">CONTACT</h2>
     <div class="row">
         <div class="col-sm-5">
-            <p>Contact us and we'll get back to you within 24 hours.</p>
+            <p>Contact us and we'll get back to you as soon as possible.</p>
             <p><span class="glyphicon glyphicon-map-marker"></span> 109-Gole market,New Delhi-110001</p>
             <p><span class="glyphicon glyphicon-phone"></span> 91-01(345782)/3360968</p>
             <p><span class="glyphicon glyphicon-envelope"></span> xyz@kaleva.com</p>
         </div>
         <div class="col-sm-7 slideanim">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-                </div>
-            </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button class="btn btn-default pull-right" type="submit">Send</button>
-                </div>
-            </div>
+          <p>items</p>
+                	<ul>
+                    	<li class="line_rv">Sweets</li>
+                        <li class="line_rv">Namkeen</li>
+                        <li class="line_rv">Dry fruits</li>
+                        <li class="line_rv">Pickles</li>
+                        <li class="line_rv">Snacks</li>
+                        <li class="line_rv">Gift Packs</li>
+                        <li class="line_rv">Cold Drinks</li>
+                        <li class="line_rv">Sharbat</li>
+                    </ul>  
+           
+                
+         
         </div>
     </div>
 </div>
@@ -525,21 +499,11 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
 </footer>
 
 <!-- Add Google Maps -->
-<div id="googleMap" style="height:400px;width:100%;"></div>
-<script>
-function myMap() {
-var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-var marker = new google.maps.Marker({position:myCenter});
-marker.setMap(map);
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
+<!-- -<div id="googleMap" style="height:400px;width:100%;"> -->
+
+
+
+
 
 <footer class="container-fluid text-center">
     <a href="#myPage" title="To Top">
