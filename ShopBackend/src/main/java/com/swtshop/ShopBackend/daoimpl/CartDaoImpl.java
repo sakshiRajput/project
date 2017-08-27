@@ -25,49 +25,33 @@ public class CartDaoImpl implements CartDao {
 	public boolean Save(Cart cart )
 	{ 
 		 sessionFactory.getCurrentSession().save(cart);
-		//session.save(user.getBillingaddress());
-		//session.save(user.getShippingaddress());
-
 		 return true;
-	    
-
-	}
+    }
 	public boolean delete(int cartId )
 	{
-
 			sessionFactory.getCurrentSession().delete(getCartById(cartId));
 			return true;
-		
-
-		
 	}
 	
-	public boolean update(Cart c) {
-
-
+	public boolean update(Cart c)
+	{
 		sessionFactory.getCurrentSession().update(c);
 		return true;
-	  
-
 	}
 	
-public List<Cart> getCartList(String username) {
-	
-	
+    public List<Cart> getCartList(String username) 
+    {
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("from Cart where username = '" + username + "' and status='NEW'");
-		//return query.list();
-		
 		List<Cart> clist=query.getResultList();
 		return clist;
 	
-}
+    }
 
 	
-	public Cart getCartById(int userid) {
-		
-			return sessionFactory.getCurrentSession().get(Cart.class, userid);
-		
+	public Cart getCartById(int userid) 
+	{
+		return sessionFactory.getCurrentSession().get(Cart.class, userid);
 	}
 	
 	public double getTotalAmount(String username) {
