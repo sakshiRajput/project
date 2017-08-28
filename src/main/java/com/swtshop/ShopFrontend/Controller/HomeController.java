@@ -66,6 +66,9 @@ public class HomeController {
 	    return "Register";
 			
 		}
+	
+	
+	
 	@RequestMapping("/Product")
 	public String Product(Model model)
 		{   model.addAttribute("ProductList",productDao.getAllProduct());
