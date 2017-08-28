@@ -6,7 +6,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +23,16 @@ public class CartDaoImpl implements CartDao {
 	
 	@Autowired
 	SessionFactory sessionFactory;
+	private final Logger log= LoggerFactory.getLogger(CartDaoImpl.class);
+
+
 	public boolean Save(Cart cart )
-	{ 
+	{     log.info("Starting save method in cartDao");
 		 sessionFactory.getCurrentSession().save(cart);
 		 return true;
     }
 	public boolean delete(int cartId )
-	{
+	{        log.info("Starting delete method in cartDao");
 			sessionFactory.getCurrentSession().delete(getCartById(cartId));
 			return true;
 	}
@@ -40,7 +44,7 @@ public class CartDaoImpl implements CartDao {
 	}
 	
     public List<Cart> getCartList(String username) 
-    {
+    {   log.info("Starting getCartList method in cartDao");
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("from Cart where username = '" + username + "' and status='NEW'");
 		List<Cart> clist=query.getResultList();
@@ -50,12 +54,12 @@ public class CartDaoImpl implements CartDao {
 
 	
 	public Cart getCartById(int userid) 
-	{
+	{    log.info("Starting getCartById method in cartDao");
 		return sessionFactory.getCurrentSession().get(Cart.class, userid);
 	}
 	
 	public double getTotalAmount(String username) {
-	
+		 log.info("Starting getTotalAmount method in cartDao");
 			Query query = sessionFactory.getCurrentSession().createQuery(
 					"SELECT SUM(price*quantity) FROM Cart where username='" + username + "' and status = 'NEW'");
 			if (query.uniqueResult() == null) {
@@ -70,7 +74,7 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	public Cart getCartByUsername(String username, String productname) {
-		
+		 log.info("Starting getCartByUserName method in cartDao");
 
 			Query query = sessionFactory.getCurrentSession().createQuery("from Cart WHERE username='" + username
 					+ "' and product_name='" + productname + "' and status = 'NEW'");
@@ -81,7 +85,7 @@ public class CartDaoImpl implements CartDao {
 
 	public int getQuantity(String username, String productname) {
 		
-
+		 log.info("Starting getquantity method in cartDao");
 			Query query = sessionFactory.getCurrentSession().createQuery("SELECT quantity from Cart WHERE username='"
 					+ username + "' and product_name='" + productname + "' and status = 'NEW'");
 		
@@ -91,7 +95,7 @@ public class CartDaoImpl implements CartDao {
 
 	public long getNumberOfProducts(String username) {
 	
-	
+		log.info("Starting getnumberofproducts method in cartDao");
 			Query query = sessionFactory.getCurrentSession().createQuery("SELECT SUM(quantity) FROM Cart where username=?1 and status = 'NEW'");
 			query.setParameter(1,username);
 //			return  (Integer) query.uniqueResult();
@@ -109,7 +113,7 @@ public class CartDaoImpl implements CartDao {
 	
 	public int clearCart(String username) {
 		
-	
+		log.info("Starting clearcart method in cartDao");
 			Query query = sessionFactory.getCurrentSession()
 					.createQuery("DELETE from Cart where username = '" + username + "'");
 			return query.executeUpdate();
