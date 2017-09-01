@@ -10,6 +10,8 @@
   
     <title>kaleva</title>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -36,6 +38,29 @@
             font-weight: 400;
             margin-bottom: 30px;
     }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+}
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+   .dropdown:hover .dropdown-content {
+    display: block;
+} 
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #f1f1f1}
     .jumbotron {
             background-color: #59e4f9;
             color: #fff;
@@ -208,17 +233,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#myPage"><span class="glyphicon glyphicon-cutlery"></span>Kaleva<span class="glyphicon glyphicon-grain"></span></a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/"><span class="glyphicon glyphicon-cutlery"></span>Kaleva<span class="glyphicon glyphicon-grain"></span></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
               <li><a href="#about">ABOUT</a></li>
-                <li><a href="#services">SERVICES</a></li>
-                <li><a href="#portfolio">CATEGORY</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-                <li  class="dropdown">
+              <li><a href="#category">CATEGORY</a></li>
+              <li><a href="#product">PRODUCTS</a></li>
+              <li><a href="#services">SERVICES</a></li>
+              <li><a href="#contact">CONTACT</a></li>
+              <li  class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
-                   <ul class="dropdown-menu">
+                   <ul class="dropdown-content">
                        <c:forEach items="${categoryList}" var="cat">
                           <li><a href="${pageContext.request.contextPath}/productByCategory/${cat.catId}">${cat.catId}</a></li>
                       </c:forEach>
@@ -239,7 +265,7 @@
                 <li><a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
 		        </sec:authorize>
 		        <sec:authorize access="isAuthenticated()" >
-                <li><a href="${pageContext.request.contextPath}/LogOut">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/LogOut"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
 		        </sec:authorize>
 		       <sec:authorize access="isAnonymous()">
 	        	 <li><a href="${pageContext.request.contextPath}/Login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
@@ -277,19 +303,19 @@
     </div>
 
     <div class="item">
-      <img src="resources/images/swt2.jpg" alt="Magazine holder" style="width:100%">
+      <img src="resources/images/swt2.jpg" alt="swt2" style="width:100%">
     </div>
 
     <div class="item">
-      <img src="resources/images/swt3.jpg" alt="wall art" style="width:100%">
+      <img src="resources/images/swt3.jpg" alt="swt3" style="width:100%">
     </div>
 
     <div class="item">
-     <img src="resources/images/swt4.jpg" alt="candle stand" style="width:100%">
+     <img src="resources/images/swt4.jpg" alt="swt4" style="width:100%">
     </div>
 
     <div class="item">
-      <img src="resources/images/swt5.jpg" alt="wall mirror" style="width:100%">
+      <img src="resources/images/swt5.jpg" alt="swt5" style="width:100%">
     </div>
   </div>
 
@@ -315,10 +341,10 @@
     We are the fourth generation of Agarwals, initially from Bikaner in Rajasthan, presently running   business..
     </p>
 
-            <br><button class="btn btn-default btn-lg">Get in Touch</button>
+          
         </div>
         <div class="col-sm-4">
-             <img src="resources/images/png4.png" alt="Paris" width="400" height="300">
+             <img src="resources/images/png4.png" alt="image" width="400" height="300">
         </div>
     </div>
 </div>
@@ -338,7 +364,63 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
     </div>
 </div>
 
-<!-- Container (Services Section) -->
+
+
+<!-- Container (Portfolio Section) -->
+<div id="category" class="container-fluid text-center bg-grey">
+    <h2>CATEGORY</h2><br>
+    <h4>What we have</h4>
+    <div class="row text-center slideanim">
+      <c:forEach items="${categoryList}" var="cat">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                     <br>
+                     <p><strong><a href="${pageContext.request.contextPath}/productByCategory/${cat.catId}">${cat.catId}</a></strong></p>
+            </div>
+        </div>
+     </c:forEach>
+    </div><br>
+</div>
+
+<!-- Container (Product Section) -->
+<div id="product" class="container-fluid">
+    <div class="text-center">
+        <h2>New Products</h2>
+        <h4>Have a look...</h4>
+    </div>
+  <div class="row slideanim">
+
+      <c:forEach items="${ProductList}" var="prod">
+            <div class="item">
+        <div class="col-sm-4 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>${prod.prodName}</h1>
+                </div>
+                <div class="panel-body">
+                 <img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" alt="Prodimage" width="300" height="200">
+                </div>
+                <div class="panel-footer">
+                    <h3><span class="price-new"><i class="fa fa-inr"></i>${prod.price}</span></h3>
+<!--                     <button class="btn btn-lg">Sign Up</button> <button class="btn btn-lg">Sign Up</button> -->
+						  <button class="btn btn-lg"><a href="<c:url value='addtocart/${prod.prodId}'/>" ><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+        				  </button>
+        				 <button class="btn btn-lg"> <a href="${pageContext.request.contextPath}/ProductDetails/${prod.prodId}"><span class="glyphicon glyphicon-share"></span> More</a>
+						</button>
+        			
+               </div>
+            </div>
+        </div>
+
+       </div>
+ </c:forEach>
+      
+      
+        
+     </div>
+</div>     
+
+  <!-- Container (Services Section) -->
 <div id="services" class="container-fluid text-center">
     <h2>SERVICES</h2>
     <h4>What we offer</h4>
@@ -352,7 +434,6 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
         </div>
         <div class="col-sm-4">
             <i class="glyphicon glyphicon-cutlery logo-small"></i>
-
             <h4>CATERING</h4>
             <p></p>
         </div>
@@ -398,69 +479,7 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
         </a>
     </div>
     </div>
-</div>
-
-<!-- Container (Portfolio Section) -->
-<div id="portfolio" class="container-fluid text-center bg-grey">
-    <h2>CATEGORY</h2><br>
-    <h4>What we have</h4>
-    <div class="row text-center slideanim">
-      <c:forEach items="${categoryList}" var="cat">
-        <div class="col-sm-4">
-            <div class="thumbnail">
-<!--                 <img src="paris.jpg" alt="Paris" width="400" height="300"> -->
-                     <br>
-                     <p><strong><a href="${pageContext.request.contextPath}/productByCategory/${cat.catId}">${cat.catId}</a></strong></p>
-<!--                 <p>Yes, we built Paris</p> -->
-            </div>
-        </div>
-     </c:forEach>
-      
-    </div><br>
-
-
-
-</div>
-
-<!-- Container (Pricing Section) -->
-<div id="pricing" class="container-fluid">
-    <div class="text-center">
-        <h2>New Products</h2>
-        <h4>Have a look...</h4>
-    </div>
-  <div class="row slideanim">
-
-      <c:forEach items="${ProductList}" var="prod">
-            <div class="item">
-        <div class="col-sm-4 col-xs-12">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <h1>${prod.prodName}</h1>
-                </div>
-                <div class="panel-body">
-                 <img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" alt="Paris" width="300" height="200">
-                </div>
-                <div class="panel-footer">
-                    <h3><span class="price-new"><i class="fa fa-inr"></i>${prod.price}</span></h3>
-<!--                     <button class="btn btn-lg">Sign Up</button> <button class="btn btn-lg">Sign Up</button> -->
-						  <button class="btn btn-lg"><a href="<c:url value='addtocart/${prod.prodId}'/>" ><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-        				  </button>
-        				 <button class="btn btn-lg"> <a href="${pageContext.request.contextPath}/ProductDetails/${prod.prodId}"><span class="glyphicon glyphicon-share"></span> More</a>
-						</button>
-        			
-               </div>
-            </div>
-        </div>
-
-       </div>
- </c:forEach>
-      
-      
-        
-     </div>
-</div>     
-
-     
+</div>   
  
 
 <!-- Container (Contact Section) -->
@@ -491,18 +510,6 @@ Kaleva's preparation involves the most ethnic way of sweet making using the trad
         </div>
     </div>
 </div>
-
-<footer class="container-fluid text-center">
-    <a href="#myPage" title="To Top">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-    </a>
-</footer>
-
-<!-- Add Google Maps -->
-<!-- -<div id="googleMap" style="height:400px;width:100%;"> -->
-
-
-
 
 
 <footer class="container-fluid text-center">

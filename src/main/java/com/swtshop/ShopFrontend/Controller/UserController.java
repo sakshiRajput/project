@@ -36,66 +36,7 @@ public class UserController {
 	
 	private final Logger logger= LoggerFactory.getLogger(UserController.class);
 
-	/*
-	 * 
-	 * 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute("customer") Customer customer, BindingResult result, Model model) {
-		logger.info("Starting saveUser method in userController");
-		if (result.hasErrors()) {
-			logger.error("Binding Result has error");
-			model.addAttribute("error", "Binding Result has error");
-			return "error";
-		}
-
-		List<User> usersList = userdao.getuser();
-
-		try {
-			logger.info("Saving user...");
-			for (int i = 0; i < usersList.size(); i++) {
-				if (user.getEmail().equalsIgnoreCase(usersList.get(i).getEmail())) {
-					model.addAttribute("emailError", "This email is already exists");
-					logger.error("Email is already exist");
-					return "Register";
-				}
-
-				if (user.getUsername().equalsIgnoreCase(usersList.get(i).getUsername())) {
-					model.addAttribute("usernameError", "This username is already exists");
-					logger.error("Username is already exists");
-					return "Register";
-				}
-
-				if (user.getMobile().equalsIgnoreCase(usersList.get(i).getMobileno())) {
-					model.addAttribute("mobileError", "Mobile number is already exists");
-					logger.error("Mobile number is already exists");
-					return "Register";
-				}
-			}
-
-			boolean flag = userDao.addUser(u);
-
-			if (flag == true) {
-
-				model.addAttribute("success", "Registered successfully");
-				logger.info("User registered successfully");
-				return "Login";
-			} else {
-				model.addAttribute("error", "Registration Failed, Please try again !");
-				logger.error("Registration failed");
-				return "Register";
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			logger.error("Exception occured " + e);
-			model.addAttribute("catchError", "Server is not responding please try again letter.");
-			return "logg";
-		}
-
-	}
-
-
-}*/
+	
 	
 @RequestMapping("/adduser")
 public String addUser(@ModelAttribute("user") User u , BindingResult result,Model model)

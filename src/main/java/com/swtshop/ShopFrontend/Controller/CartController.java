@@ -36,9 +36,7 @@ import com.swtshop.ShopBackend.model.User;
 @Controller
 public class CartController {
 	
-//	
-//     @Autowired(required=true)
-//     Cart cart;
+
 
 	@Autowired
 	 CartDao cartdao;
@@ -46,8 +44,6 @@ public class CartController {
 	
 	@Autowired
 	CategoryDao categoryDao;
-// 	@Autowired
-//    Product product;
 
 	@Autowired
 	 ProductDao productdao;
@@ -154,55 +150,46 @@ public class CartController {
 		
 	}
 
-
-//	@RequestMapping("/clearCart")
-//	public String clearCart(RedirectAttributes redirect, Model model) {
+	
+	@RequestMapping("/clearCart")
+	public String clearCart(Model model,RedirectAttributes redirect) {
 //		
 //			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //			String username = auth.getName();
 //			int flag = cartdao.clearCart(username);
 //
 //			if (flag >= 1) {
-//				redirect.addFlashAttribute("success", "All Items removed successfully.");
+//			System.out.println("success,All Items removed successfully.");
+//				//redirect.addFlashAttribute("success", "All Items removed successfully.");
 //				return "Cart";
 //			} else {
-//				redirect.addFlashAttribute("error", "Failed to clear cart!");
+//				System.out.println("error,failed to remove");
+//				//redirect.addFlashAttribute("error", "Failed to clear cart!");
 //				return "Cart";
 //			}
-//
-//		
-//	}
-	
-	
-	@RequestMapping("/clearCart")
-	public String clearCart(Model model) {
-		
+
+		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String username = auth.getName();
 			int flag = cartdao.clearCart(username);
 
 			if (flag >= 1) {
-			System.out.println("success,All Items removed successfully.");
-				//redirect.addFlashAttribute("success", "All Items removed successfully.");
-				return "Cart";
+				redirect.addFlashAttribute("success", "All Items removed successfully.");
+				return "redirect:/all";
 			} else {
-				System.out.println("error,failed to remove");
-				//redirect.addFlashAttribute("error", "Failed to clear cart!");
-				return "Cart";
+				redirect.addFlashAttribute("error", "Failed to clear cart!");
+				return "redirect:/all";
 			}
 
-		
+		} catch (Exception e) {
+			model.addAttribute("catchError", "Server is not responding please try again latter.");
+			return "error";
+		}
 	}
-//	@RequestMapping("/Cart")
-//	public String cart(Model model)
-//	{   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//	    String username = auth.getName();
-//		//model.addAttribute("numberProducts", cartdao.getNumberOfProducts(username)); 
-//		
-//		model.addAttribute("cartInfo",cartdao.getCartList(username));
-//		model.addAttribute("cart",new Cart());
-//		return "redirect:/Cart";
-//	}
+		
+		
+	
+
 
 	@RequestMapping("/all")
 	public String getCart(Model model) 
@@ -211,25 +198,17 @@ public class CartController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		String loggedInUsername = username;
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
+		Order order=new Order();
     	session.setAttribute("numberProducts", cartdao.getNumberOfProducts(loggedInUsername));
-		for(Cart n:cartdao.getCartList(loggedInUsername))
-		{ String name=n.getProdName();
-			System.out.println("name"+name);
-		}
 		session.setAttribute("cartInfo", cartdao.getCartList(loggedInUsername));
-	//	model.addAttribute("cartInfo",cartdao.getCartList(loggedInUsername));
-	//	session.setAttribute("cartInfo",cartdao.getCartList(username));
-		session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
-		//invoice info is added to display in modal..from here
-		
+	    session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
 		System.out.println("before get user by id");
 		User user=userdao.getUserById(loggedInUsername);
-		//session.setAttribute("mobile",user.getMobile());
-	   System.out.println("after get user by id");
-		Order order=new Order();
+        System.out.println("after get user by id");
 		order.setBillingaddress(user.getBillingaddress());
 		order.setShippingaddress(user.getShippingaddress());
-		   System.out.println("after bill n ship");
+		System.out.println("after bill n ship");
 		order.setOrderStatus("Placed");
 		order.setUser(user);
 		System.out.println("after set user");
@@ -241,7 +220,6 @@ public class CartController {
 		session.setAttribute("totalAmount", cartdao.getTotalAmount(loggedInUsername));
 		session.setAttribute("Date",new Date() );
 		System.out.println("before-");
-//		session.setAttribute("Billing",orderdao.getOrderById(loggedInUsername));
 		System.out.println("redirection is done:");
 		orderdao.addOrder(order);
 		
@@ -263,12 +241,12 @@ public class CartController {
 		
 
 		@RequestMapping("/invoice")
-		public String invoice()
+		public String invoice(Model model)
 		{
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String username = auth.getName();
 			String loggedInUsername = username;
-			
+			model.addAttribute("categoryList",categoryDao.getAllCategory());
 			System.out.println("before get user by id");
 			User user=userdao.getUserById(loggedInUsername);
 		   System.out.println("after get user by id");

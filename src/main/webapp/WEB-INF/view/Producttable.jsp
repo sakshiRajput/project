@@ -15,7 +15,7 @@
  
 <title>product_table</title>
 </head>
-<body  style="background-image: url(resources/images/bg.jpg)">
+<body >
 <jsp:include page="header.jsp"></jsp:include>
 <br><br>
 
@@ -40,7 +40,7 @@
                     <h1>${prod.prodName}</h1>
                 </div>
                 <div class="panel-body">
-                 <img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" alt="Paris" width="300" height="200">
+                 <img src="${pageContext.request.contextPath}/resources/images/${prod.prodId}.jpg" alt="Prodimage" width="300" height="200">
                 </div>
                 <div class="panel-footer">
                     <h3><span class="price-new"><i class="fa fa-inr"></i>${prod.price}</span></h3>

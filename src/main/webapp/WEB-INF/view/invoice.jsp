@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <h2 class="page-header">
-                                    <i class="fa fa-globe"></i>Kaleva Sweets.
+                                    <span class="glyphicon glyphicon-cutlery"></span>Kaleva Sweets<span class="glyphicon glyphicon-grain"></span>
                                     <small class="pull-right">Date:${Date}</small>
                                 </h2>
                             </div><!-- /.col -->
@@ -78,7 +78,7 @@
                             <div class="col-sm-4 invoice-col">
                                 <b>Invoice </b><br>
                                 <br>
-                                <b>Order ID:</b> 4F3S8J<br>
+                                <b>Order ID:</b> ${order.orderId}<br>
                                 <b>Payment Due:</b> 2/22/2014<br>
                                 <b>Account:</b> 968-34567
                        </div><!-- /.col -->
@@ -102,9 +102,9 @@
                                       <c:forEach  var="ci"  items="${cartInfo}"  >
                                         <tr>
                                             <td>${ci.quantity }</td>
-                                            <td>${ci.cartId}</td>
-                                            <td>${ci.price}</td>
-                                            <td>${ci.quantity*ci.price}</td>
+                                            <td>${ci.prodName}</td>
+                                            <td><i class="fa fa-inr"></i>${ci.price}</td>
+                                            <td><i class="fa fa-inr"></i>${ci.quantity*ci.price}</td>
                                         </tr>
                                        </c:forEach>
                                                                             </tbody>
@@ -124,7 +124,7 @@
 
                                             <tr>
                                                 <th>Total:</th>
-                                                <td> ${totalAmount}</td>
+                                                <td><i class="fa fa-inr"></i> ${totalAmount}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -136,7 +136,8 @@
                         <div class="row no-print">
                             <div class="col-xs-12">
                                 <button  onclick="myFunction()" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
-                                <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Edit Details</button>
+                               
+                                 <a href="${pageContext.request.contextPath}/all"><button class="btn btn-success pull-right"><span class="glyphicon glyphicon-chevron-left"></span> Back</button></a>
                                 <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
                             </div>
                         </div>

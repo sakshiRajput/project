@@ -17,8 +17,9 @@
 </head>
 <body >
 <jsp:include page="header.jsp"></jsp:include>
-<div class="container">
-  <h2>Add Product</h2>
+<br><br>
+<div class="container bg-grey">
+  <h2 align="center">Add Product</h2>
  <sp:form action="${pageContext.request.contextPath}/addProduct" method="post" modelAttribute="product" enctype="Multipart/form-data">
  <c:if test="${not empty product.prodName}"> 
     <sp:input type="hidden" path="prodId" readonly="true" disabled="true"/>
@@ -53,10 +54,11 @@
       <sp:input type="file" class="form-control"  path="image" placeholder="Choose Path" />
     </div>
 
-    <sp:button type="submit" class="btn btn-default">Submit</sp:button>
+    <sp:button type="submit" class="btn btn-default" onclick="alert('Product added')">Submit</sp:button>
   </sp:form>
 </div>
- <div class="container">
+<br><br>
+ <div class="container bg-grey">
   <h2 align="center">Product List.....</h2>
 
 <c:if test="${not empty ProductList}">

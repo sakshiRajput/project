@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.swtshop.ShopBackend.dao.CategoryDao;
 import com.swtshop.ShopBackend.dao.ProductDao;
@@ -28,72 +29,56 @@ public class ProductController {
 	CategoryDao categoryDao;
 	
 	@RequestMapping(value="/addProduct",method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") Product p,Model model,HttpSession session)
+	public String addProduct(@ModelAttribute("product") Product p,Model model,HttpSession session,RedirectAttributes redirect)
 	{
+		MultipartFile m=p.getImage();
+
+		if(p.getProdId()==null)
+		{
 		
-//		MultipartFile mp=p.getImage();
-//	    ServletContext context=session.getServletContext();
-//     	String filelocation=context.getRealPath("/resources/images");
-//    	System.out.println(filelocation);
-//	    String filename=filelocation+"\\"+p.getProdId()+".jpg";
-//	    System.out.println(filename);
-//	    
-//		
-//		if(p.getProdId()==null)
-//		{
-//			productdao.addProduct(p);
-//
-//		    
-//		     try
-//		     {   byte b[]=mp.getBytes();
-//		     	 FileOutputStream fos=new FileOutputStream(filename);
-//		     	 fos.write(b);
-//		     	 fos.close();
-//		     }
-//		     catch(Exception e){}
-//		  
-//				
-//		}
-//		else
-//		{
-//			System.out.println("update data");
-//			productdao.updateProduct(p);
-//			
-//		    
-//		}
-//	
-		
-		
-		try
-	     {     
-			MultipartFile mp=p.getImage();
-		    ServletContext context=session.getServletContext();
-	     	String filelocation=context.getRealPath("/resources/images");
-	    	System.out.println(filelocation);
-		    String filename=filelocation+"\\"+p.getProdId()+".jpg";
-		    System.out.println(filename);
-		    byte b[]=mp.getBytes();
+			boolean flag=productdao.addProduct(p);
+
+			System.out.println(m.getOriginalFilename());
+			ServletContext context=session.getServletContext();
+			String filelocation=context.getRealPath("/resources/images");
+			System.out.println(filelocation);
+			String filename=filelocation+"\\"+p.getProdId()+".jpg";
+			System.out.println(filename);
+			try{
+				byte b[]=m.getBytes();
 			FileOutputStream fos=new FileOutputStream(filename);
 			fos.write(b);
-			fos.close();   
-			 
-			    if(p.getProdId()==null)
-				{
-					productdao.addProduct(p);
-				
-	             }
-			    else
-				{
-					System.out.println("update data");
-					productdao.updateProduct(p);
-					
-				    
+			fos.close();
+			}
+			catch(Exception e){}
+			if (flag) {
+				redirect.addFlashAttribute("success",p.getProdName() + " " + "Successfully added to product!");
 				}
-			    
-	     }	    
-			    catch(Exception e){}
+		}
+		else
+		{
+			System.out.println(m.getOriginalFilename());
+			ServletContext context=session.getServletContext();
+			String filelocation=context.getRealPath("/resources/images");
+			System.out.println(filelocation);
+			String filename=filelocation+"\\"+p.getProdId()+".jpg";
+			System.out.println(filename);
+			try{
+				byte b[]=m.getBytes();
+			FileOutputStream fos=new FileOutputStream(filename);
+			fos.write(b);
+			fos.close();
+			}
+			catch(Exception e){}
+			boolean flag  =	productdao.updateProduct(p);
+			if (flag) {
+				redirect.addFlashAttribute("success", "Successfully updated!");
+				}
+		}
+		return "redirect:/Product";
 		
-			return "redirect:/Product";	
+		
+		
 	}
 
 	@RequestMapping(value="/updateProduct/{prodId}")

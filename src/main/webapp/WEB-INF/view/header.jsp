@@ -26,6 +26,29 @@
             font-weight: 400;
             margin-bottom: 30px;
     }
+       .dropdown {
+    position: relative;
+    display: inline-block;
+}
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+   .dropdown:hover .dropdown-content {
+    display: block;
+} 
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #f1f1f1}
     .jumbotron {
            min-height: 10px;
             background-color: #59e4f9;
@@ -200,13 +223,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#myPage">Logo</a>
+           <a class="navbar-brand" href="${pageContext.request.contextPath}/"><span class="glyphicon glyphicon-cutlery"></span>Kaleva<span class="glyphicon glyphicon-grain"></span></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
               <li><a href="${pageContext.request.contextPath}/"><span class="glyphicon glyphicon-home"></span>HOME</a></li>
               
-                <li><a href="#">CATEGORY</a></li>
+        
                 <li  class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category <span class="caret"></span></a>
                    <ul class="dropdown-menu">
@@ -230,7 +253,7 @@
                 <li><a href="${pageContext.request.contextPath}/all"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge badge-pill badge-primary">${numberProducts}</span></a></li>
 		        </sec:authorize>
 		        <sec:authorize access="isAuthenticated()" >
-                <li><a href="${pageContext.request.contextPath}/LogOut">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/LogOut"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
 		        </sec:authorize>
 		       <sec:authorize access="isAnonymous()">
 	        	 <li><a href="${pageContext.request.contextPath}/Login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>

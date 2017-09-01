@@ -17,8 +17,9 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<div class="container">
-  <h2>Add Supplier</h2>
+<br><br>
+<div class="container bg-grey">
+  <h2 align="center">Add Supplier</h2>
  <sp:form action="${pageContext.request.contextPath}/addSupplier" method="post" modelAttribute="supplier" >
    <div>
   <c:if test="${not empty supplier.supName}">
@@ -38,12 +39,13 @@
       <sp:input class="form-control"  path="supPrice" placeholder="Enter supplier price" />
     </div>
    
-    <sp:button type="submit" class="btn btn-default">Submit</sp:button>
+    <sp:button type="submit" class="btn btn-default" onclick="alert('Product added')">Submit</sp:button>
 </sp:form>
-</div>  
- <div class="container">
-  <h2>Supplier......</h2>
-  <p>table of suppliers...</p> 
+</div>
+<br><br>  
+ <div class="container bg-grey">
+  <h2 align="center">Supplier......</h2>
+  <p align="center">Table of suppliers...</p> 
 <c:if test="${not empty supplierList}">
 <table border=1 class="table table-striped" >
 <thead>
@@ -51,8 +53,7 @@
       <th>Name</th>
       <th>Supplier Description</th>
       <th>Supplier's cost</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th>Action</th>
       </tr>
 </thead>
 <tbody>
@@ -61,8 +62,8 @@
 <td>${sup.supName}</td>
 <td>${sup.supDesc}</td>
 <td>${sup.supPrice}</td>
-<td><a href="<c:url value='updateSupplier/${sup.supId}'/>">Edit</a></td>
-<td><a href="<c:url value='deleteSupplier/${sup.supId}'/>">Delete</a></td>
+<td><a class="btn btn-info btn-sm" href="<c:url value='updateSupplier/${sup.supId}'/>"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+<a class="btn btn-info btn-sm" href="<c:url value='deleteSupplier/${sup.supId}'/>"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
 <tr>
 
 </c:forEach>

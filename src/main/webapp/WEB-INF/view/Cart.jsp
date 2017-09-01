@@ -16,25 +16,19 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
  <div class="jumbotron">
- 
-    
     <h1 align="center"> <i class="glyphicon glyphicon-shopping-cart"></i>Cart</h1>      
-  
  </div>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
         <c:if test="${ empty cartInfo}">
-         <table class="table table-hover">
-                
-                    <tr>
-                        <th align="center">Empty cart:no item is added yet...</th>
-                   
-                    <th>
-                     <a href="${pageContext.request.contextPath}/">  <button type="button" class="btn btn-success">
-                            <i class="fa fa-shopping-bag"></i> Continue Shopping</button></a></th>
-                    </tr>
-        </table>
+         <div>
+               <p align="center"><img  src="resources/images/empty-cart-icon.svg" alt="swt2" style="width:15%" ></p>
+               <h1 align="center">oops!!</h1>
+               <p align="center">Empty cart:No item is added yet... </p>
+               <p align="center"><a href="${pageContext.request.contextPath}/">  <button type="button" class="btn btn-success">
+                            <i class="fa fa-shopping-bag"></i> Add Products</button></a></th> </p>
+         </div>
         </c:if>
             <c:if test="${not empty cartInfo}">
             <table class="table table-hover">
@@ -57,9 +51,9 @@
                         <td>   </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${ci.quantity}</strong></td>
 					    <td>   </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${ci.price}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong><i class="fa fa-inr"></i>${ci.price}</strong></td>
  						<td>   </td>
- 						<td class="col-sm-1 col-md-1 text-center"><strong>${ci.price*ci.quantity}</strong></td>
+ 						<td class="col-sm-1 col-md-1 text-center"><strong><i class="fa fa-inr"></i>${ci.price*ci.quantity}</strong></td>
                         <td class="col-sm-1 col-md-1">
                         <a href="<c:url value='deleteCart/${ci.cartId}'/>"><button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
@@ -73,21 +67,23 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Grand Total</h3></td>
-                        <td class="text-right"><h3><strong>${totalAmount}</strong></h3></td>
+                        <td class="text-right"><h3><strong><i class="fa fa-inr"></i>${totalAmount}</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
                             <i class="fa fa-check-square-o"></i>Confirm Details
                          </button> </td>
-                        <td>   </td>
+                        <td><a href="${pageContext.request.contextPath}/clearCart">  <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Clear cart
+                        </button></a>   </td>
                         <td>
                       <a href="${pageContext.request.contextPath}/">  <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </button></a></td>
                         <td>
                        <a href="${pageContext.request.contextPath}/invoice">  <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
+                            Checkout <span class="glyphicon glyphicon-chevron-right"></span>
                         </button></a>
                         </td>
                     </tr>
@@ -99,7 +95,7 @@
 </div>
 <br><br><br>
   <div class="modal fade" id="myModal" role="dialog">
-  
+    <br><br><br>
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -119,27 +115,25 @@
                                       ${shipaddr.shipzipcode }<br>
                                                                           
                                 </address>
-                            </div><!-- /.col -->
+                            </div>
                             <div class="col-sm-4 invoice-col">
                               <strong> Billing Address </strong>
                                 <address>
-                                    <strong>
-                                        Shahid                                    </strong>
-                                    <br>
+                                    <strong>${pageContext.request.userPrincipal.name}</strong><br>
                                     ${billaddr.apartNo },${billaddr.streetName}    <br>
-                                    ${billaddr.city }, ${billaddr.state }                                   <br>
+                                    ${billaddr.city }, ${billaddr.state }<br>
                                     ${billaddr.country }<br>
-                                    ${billaddr.zipcode }       <br>
-                                                                 </address>
-                            </div><!-- /.col -->
+                                    ${billaddr.zipcode }<br>
+                                 </address>
+                            </div>
                             <div class="col-sm-4 invoice-col">
                                 <b>Invoice </b><br>
                                 <br>
                                 <b>Mobile :</b> ${mobile}<br>
                                 <b>Date:</b> ${Date}<br>
                                 <b>Account:</b> ***-****
-                       </div>
-                        </div>
+                           </div>
+            </div>
         </div>
         <div class="modal-footer">
        <a href="${pageContext.request.contextPath}/edituser/${pageContext.request.userPrincipal.name}">  <button type="button" class="btn btn-success">

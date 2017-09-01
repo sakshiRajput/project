@@ -43,20 +43,21 @@
                         <div class="row">
                             <div class="col-sm-6 form-group">
                                 <sp:label path="userName">User Name</sp:label>
-                                <sp:input type="text" path="userName" placeholder="Enter User Name" class="form-control"/>
+                                <sp:input type="text" path="userName" placeholder="Enter User Name" class="form-control" required=""/>
+                                <sp:errors path="userName" cssClass="${usernameError}" />
                             </div>
                             <div class="col-sm-6 form-group">
                                 <sp:label path="email">Email Id</sp:label>
-                                <sp:input type="text" path="email" placeholder="Enter Last Name Here.." class="form-control"/>
+                                <sp:input type="text" path="email" placeholder="Enter Last Name Here.." class="form-control" required=""/>
                             </div>
                             <div class="col-sm-6 form-group">
                         <sp:label path="mobile">Phone Number</sp:label>
-                        <sp:input type="text" path="mobile" placeholder="Enter Phone Number Here.." class="form-control"/>
+                        <sp:input type="text" path="mobile" placeholder="Enter Phone Number Here.." class="form-control" required=""/>
                     </div>
 
                     <div class="col-sm-6 form-group">
                         <sp:label path="password">Password</sp:label>
-                        <sp:input type="password" path="password" placeholder="Enter Password Here.." class="form-control"/>
+                        <sp:input type="password" path="password" placeholder="Enter Password Here.." class="form-control" required=""/>
                     </div>
                         </div>
 
@@ -67,16 +68,16 @@
                         <h2>Shipping Address</h2>
                         <div class="form-group">
                         <sp:label path="shippingaddress.shipapartNo">Apartment No.</sp:label>
-                            <sp:input type="text" path="shippingaddress.shipapartNo" placeholder="Enter Apartment number " class="form-control"/>
+                            <sp:input type="text" path="shippingaddress.shipapartNo" placeholder="Enter Apartment number " class="form-control" required=""/>
                         </div>
                          <div class="row">
                         <div class="col-sm-6 form-group">
                         <sp:label path="shippingaddress.shipstreetName">Street Name</sp:label>
-                            <sp:input type="text" path="shippingaddress.shipstreetName" placeholder="Enter Street address " class="form-control"/>
+                            <sp:input type="text" path="shippingaddress.shipstreetName" placeholder="Enter Street address " class="form-control" required=""/>
                         </div>
                         <div class="col-sm-6 form-group">
                                 <sp:label path="shippingaddress.shipcity" >City</sp:label>
-                                <sp:input type="text" path="shippingaddress.shipcity"  placeholder="Enter City Name Here.." class="form-control"/>
+                                <sp:input type="text" path="shippingaddress.shipcity"  placeholder="Enter City Name Here.." class="form-control" required=""/>
                             </div>
 
 
@@ -85,15 +86,15 @@
                         <div class="row">
                           <div class="col-sm-4 form-group">
                                 <sp:label path="shippingaddress.shipcountry" >Country</sp:label>
-                                <sp:input type="text" path="shippingaddress.shipcountry"  placeholder="Enter City Name Here.." class="form-control"/>
+                                <sp:input type="text" path="shippingaddress.shipcountry"  placeholder="Enter City Name Here.." class="form-control" required=""/>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <sp:label path="shippingaddress.shipstate">State</sp:label>
-                                <sp:input type="text" path="shippingaddress.shipstate" placeholder="Enter State Name Here.." class="form-control"/>
+                                <sp:input type="text" path="shippingaddress.shipstate" placeholder="Enter State Name Here.." class="form-control" required=""/>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <sp:label  path="shippingaddress.shipzipcode">Zip</sp:label>
-                                <sp:input type="text"  path="shippingaddress.shipzipcode" placeholder="Enter Zip Code Here.." class="form-control"/>
+                                <sp:input type="text"  path="shippingaddress.shipzipcode" placeholder="Enter Zip Code Here.." class="form-control" required=""/>
                             </div>
 
                         </div>
@@ -112,16 +113,16 @@
                         <h2>Billing Address</h2>
                         <div class="form-group">
                         <sp:label path="billingaddress.apartNo">Apartment No.</sp:label>
-                            <sp:input type="text" path="billingaddress.apartNo" placeholder="Enter Apartment number " class="form-control"/>
+                            <sp:input type="text" path="billingaddress.apartNo" placeholder="Enter Apartment number " class="form-control" required=""/>
                         </div>
                          <div class="row">
                         <div class="col-sm-6 form-group">
                         <sp:label path="billingaddress.streetName">Street Name</sp:label>
-                            <sp:input type="text" path="billingaddress.streetName" placeholder="Enter Street address " class="form-control"/>
+                            <sp:input type="text" path="billingaddress.streetName" placeholder="Enter Street address " class="form-control" required=""/>
                         </div>
                         <div class="col-sm-6 form-group">
                                 <sp:label path="billingaddress.city" >City</sp:label>
-                                <sp:input type="text" path="billingaddress.city"  placeholder="Enter City Name Here.." class="form-control"/>
+                                <sp:input type="text" path="billingaddress.city"  placeholder="Enter City Name Here.." class="form-control" required=""/>
                             </div>
 
 
@@ -130,15 +131,15 @@
                         <div class="row">
                           <div class="col-sm-4 form-group">
                                 <sp:label path="billingaddress.country" >Country</sp:label>
-                                <sp:input type="text" path="billingaddress.country"  placeholder="Enter City Name Here.." class="form-control"/>
+                                <sp:input type="text" path="billingaddress.country"  placeholder="Enter City Name Here.." class="form-control" required=""/>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <sp:label path="billingaddress.state">State</sp:label>
-                                <sp:input type="text" path="billingaddress.state" placeholder="Enter State Name Here.." class="form-control"/>
+                                <sp:input type="text" path="billingaddress.state" placeholder="Enter State Name Here.." class="form-control" required=""/>
                             </div>
                             <div class="col-sm-4 form-group">
                                 <sp:label  path="billingaddress.zipcode">Zip</sp:label>
-                                <sp:input type="text"  path="billingaddress.zipcode" placeholder="Enter Zip Code Here.." class="form-control"/>
+                                <sp:input type="text"  path="billingaddress.zipcode" placeholder="Enter Zip Code Here.." class="form-control" required=""/>
                             </div>
 
                         </div>

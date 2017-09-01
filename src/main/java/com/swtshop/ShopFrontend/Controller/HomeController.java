@@ -16,6 +16,7 @@ import com.swtshop.ShopBackend.model.Category;
 import com.swtshop.ShopBackend.model.Product;
 import com.swtshop.ShopBackend.model.Supplier;
 import com.swtshop.ShopBackend.model.User;
+
 @Controller
 public class HomeController {
 
@@ -60,7 +61,7 @@ public class HomeController {
 	@RequestMapping("/Register")
 	public String Register(Model model)
 		{
-		
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
 		model.addAttribute("userList",userDao.getUser());
 		model.addAttribute("user",new User());
 	    return "Register";
@@ -74,13 +75,14 @@ public class HomeController {
 		{   model.addAttribute("ProductList",productDao.getAllProduct());
 		    model.addAttribute("product",new Product());
 		    model.addAttribute("categoryList",categoryDao.getAllCategory());
-			model.addAttribute("category",new Category());
+			
 			return "Product";
 		}
 	
 	@RequestMapping("/Supplier")
 	public String Supplier(Model model)
-		{   model.addAttribute("supplierList",supplierDao.getAllSupplier());
+		{   model.addAttribute("categoryList",categoryDao.getAllCategory());
+		    model.addAttribute("supplierList",supplierDao.getAllSupplier());
 		    model.addAttribute("supplier",new Supplier());
 		    return "Supplier";
 		}
@@ -97,7 +99,8 @@ public class HomeController {
 	@RequestMapping("/Productlist")
 	public String Productlist(Model model)
 	{
-		 model.addAttribute("ProductList",productDao.getAllProduct());
+		model.addAttribute("categoryList",categoryDao.getAllCategory());
+		model.addAttribute("ProductList",productDao.getAllProduct());
 		return "Productlist";
 	}
 	
@@ -115,20 +118,13 @@ public class HomeController {
 		
 	}
 	
-/*	@RequestMapping("/ProductDetails")
-	public String Productdetails(Model model)
-	{
-		model.addAttribute("ProductList",productDao.getAllProduct());
-		model.addAttribute("product",new Product());
-		return "ProductDetails";
-	}
-	*/
+
 	@RequestMapping("/Producttable")
 	public String Producttable(String catId,Model model)
 	{
 		model.addAttribute("categoryList",categoryDao.getAllCategory());
 		model.addAttribute("ProductList",productDao.productByCategory(catId));
-	//	model.addAttribute("product",new Product());
+	
 		return "redirect:/Producttable";
 	}
 	
@@ -154,17 +150,6 @@ public class HomeController {
 			return "Profile";
 		}
 	
-//	@RequestMapping("/Admin")
-//	public String admin(Model model)
-//	{     
-//		model.addAttribute("categoryList",categoryDao.getAllCategory());
-//		model.addAttribute("category",new Category());
-//		model.addAttribute("supplierList",supplierDao.getAllSupplier());
-//	    model.addAttribute("supplier",new Supplier());
-//	    model.addAttribute("ProductList",productDao.getAllProduct());
-//	    model.addAttribute("product",new Product());
-//			return "redirect:/Admin";
-//		}
 
 
 }
